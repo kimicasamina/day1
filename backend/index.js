@@ -4,6 +4,7 @@ import express from "express";
 // middleware imports
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";

@@ -9,7 +9,6 @@ export default function Nav() {
         <img src={calendar} alt="logo" className="branding__logo" />
         <p className="branding__name">day1</p>
       </div>
-
       <ul className="navitems">
         <Link to="/" className="navitems__link">
           Dashboard
@@ -21,7 +20,6 @@ export default function Nav() {
           Daily
         </Link>
       </ul>
-
       <ul className="cta">
         <Link to="/login" className="btn btn--primary">
           Login
