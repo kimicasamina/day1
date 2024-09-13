@@ -1,29 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { calendar } from "../../assets";
 
 export default function Nav() {
   return (
     <nav className="nav">
-      <div className="nav__branding">day1</div>
+      <div className="branding">
+        <img src={calendar} alt="logo" className="branding__logo" />
+        <p className="branding__name">day1</p>
+      </div>
 
-      <ul className="nav__links">
-        <Link to="/" className="nav__link">
+      <ul className="navitems">
+        <Link to="/" className="navitems__link">
           Dashboard
         </Link>
-        <Link to="/habits" className="nav__link">
+        <Link to="/habits" className="navitems__link">
           Habits
         </Link>
-        <Link to="daily" className="nav__link">
+        <Link to="daily" className="navitems__link">
           Daily
         </Link>
       </ul>
 
-      <ul className="nav__cta">
+      <ul className="cta">
         <Link to="/login" className="btn btn--primary">
           Login
         </Link>
         <Link to="/register" className="btn btn--secondary">
-          Create an Account
+          Join day1
         </Link>
       </ul>
     </nav>

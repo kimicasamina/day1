@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+.layout {
+    background: green;
+    min-height: 100vh;
+    width: 100%;
+    max-width: map-get($breakpoints, "xl" );
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    &__main {
+        flex: 1;
+        width: 100%;
+        background-color: orange;
+        display: flex;
+        padding: 40px 16px;
+    }
+}
+
