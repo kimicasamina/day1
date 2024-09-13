@@ -1,0 +1,61 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 auto;
+    margin-top: 45px;
+    
+    @include sm(){
+        // max-width: 70%;
+    }
+
+    &__title {
+
+    }
+    
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+       
+    }
+
+    &__label {
+
+    }
+
+    &__input {
+        padding: 8px 8px;
+        outline: none;
+        border: $dark solid 1px;
+        font-size: 16px;
+        resize: none;
+
+        &:focus {
+            border: $primary solid 1px;
+        }
+
+    }
+
+
+    button {
+        margin-top: 16px;
+    }
+}
+
+.form.edit-post-form, .form.add-post-form {
+    width: 100%;
+}
+
+.form.login-form, .form.register-form {
+    width: 100%;
+    max-width: 50%;
+
+    @include sm(){
+        width: 100%;
+    }
+}
