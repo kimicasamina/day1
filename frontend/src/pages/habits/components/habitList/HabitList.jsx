@@ -29,7 +29,7 @@ export default function HabitList({ habits }) {
               
             /> */}
             <p className="habit-name">{item.name}</p>
-            {/* <p className="habit-description">{item.description}</p> */}
+            <p className="habit-description">{item.description}</p>
             <div className="habit-tracker">
               <div className="calendar">
                 <div className="week">
@@ -41,14 +41,16 @@ export default function HabitList({ habits }) {
                 </div>
 
                 <div className="listOfDays">
-                  {days.map((item, index) => (
-                    <div
-                      className={`day ${item.status === "completed" ? "completed" : "missed"}`}
-                      key={item.id}
-                    >
-                      {item.date}
-                    </div>
-                  ))}
+                  {days
+                    .map((item, index) => (
+                      <div
+                        className={`day ${item.status === "completed" ? "completed" : "missed"}`}
+                        key={item.id}
+                      >
+                        {item.date}
+                      </div>
+                    ))
+                    .slice(0, 7)}
                 </div>
               </div>
             </div>

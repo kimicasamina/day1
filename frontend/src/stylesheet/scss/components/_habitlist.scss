@@ -8,11 +8,13 @@
     width: 100%;
 
     @include md(){
-        max-width: 25%;
+        max-width: 40%;
+        margin: 0 auto;
     }
 
     .habit {
         // background-color: #ecbe23;
+        border: solid 1px orange;
         padding: 12px;
         border-radius: 6px;
         line-height: 1.2;

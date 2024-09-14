@@ -14,9 +14,11 @@ export async function createHabit(req, res, next) {
 }
 
 export const getHabits = async (req, res, next) => {
-  const habits = await Habit.find({});
-  //   const habits = ["jogging", "shower", "exercise"];
-
-  console.log("List of habits:", habits);
-  res.status(200).json({ habits });
+  try {
+    const habits = await Habit.find({});
+    console.log("List of habits:", habits);
+    res.status(200).json({ habits });
+  } catch (err) {
+    console.log(err);
+  }
 };

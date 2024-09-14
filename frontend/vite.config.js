@@ -5,7 +5,8 @@ import { config } from "dotenv";
 
 // Load environment variables from .env file
 config();
-
+// const mode = process.env.VITE_MODE; // This now exists.
+// console.log("MODE: ", mode);
 // https://vitejs.dev/config/
 export default defineConfig({
   // Your Vite configuration
@@ -15,6 +16,8 @@ export default defineConfig({
   plugins: [
     react(),
     sentryVitePlugin({
+      // org: "kimicasamina",
+      // project: "habit-tracker",
       org: process.env.VITE_SENTRY_ORG,
       project: process.env.VITE_SENTRY_PROJECT,
       authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
@@ -23,5 +26,17 @@ export default defineConfig({
 
   build: {
     sourcemap: true,
+  },
+
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080/",
+      },
+
+      "/admin": {
+        target: "http://localhost:8081/",
+      },
+    },
   },
 });

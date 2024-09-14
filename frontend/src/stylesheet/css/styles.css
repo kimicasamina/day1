@@ -190,10 +190,12 @@ a {
 }
 @media (min-width: 768px) {
   .habit-list {
-    max-width: 25%;
+    max-width: 40%;
+    margin: 0 auto;
   }
 }
 .habit-list .habit {
+  border: solid 1px orange;
   padding: 12px;
   border-radius: 6px;
   line-height: 1.2;
