@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ErrorBoundary } from "@sentry/react";
+
 // import "./App.css";
 import "./stylesheet/scss/Main.scss";
 
@@ -7,7 +9,11 @@ import RootLayout from "./layout/RootLayout";
 import { router } from "./routes";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ErrorBoundary fallback={"An error has occurred"}>
+      <RouterProvider router={router} />;
+    </ErrorBoundary>
+  );
 }
 
 export default App;
