@@ -31,7 +31,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8080/",
+        target:
+          process.env.VITE_MODE === "development"
+            ? "http://localhost:8080/"
+            : "https://d4y0ne.onrender.com",
       },
 
       "/admin": {
