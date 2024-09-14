@@ -3,9 +3,11 @@
 
 
 #root {
-    background: purple;
     width: 100%;
     min-height: 100vh;
+    color: black;
+    line-height: 1.4;
+    font-family: $roboto;
 }
 
 // body {
@@ -47,4 +49,5 @@ button {
     outline: none;
     border: none;
 }
+
 

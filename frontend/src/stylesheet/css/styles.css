@@ -1,16 +1,16 @@
 /* Roboto  */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-/* Rubik */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
-/* Inter */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 #root {
-  background: purple;
   width: 100%;
   min-height: 100vh;
+  color: black;
+  line-height: 1.4;
+  font-family: "Roboto", sans-serif;
 }
 
 a, a:visited, a:active {
@@ -182,8 +182,72 @@ a {
   border: solid 1px green;
 }
 
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .habit-list {
+    max-width: 25%;
+  }
+}
+.habit-list .habit {
+  padding: 12px;
+  border-radius: 6px;
+  line-height: 1.2;
+}
+.habit-list .habit-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.habit-list .habit-description {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.habit-tracker {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+.habit-tracker .calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 8px;
+}
+.habit-tracker .calendar .week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
+  justify-items: center;
+}
+.habit-tracker .calendar .week .nameOfTheDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.habit-tracker .calendar .listOfDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
+  justify-items: center;
+}
+.habit-tracker .calendar .listOfDays .day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.habit-tracker .calendar .listOfDays .day.completed {
+  background-color: rgb(164, 255, 194);
+}
 .layout {
-  background: green;
   min-height: 100vh;
   width: 100%;
   max-width: 1200px;
@@ -194,9 +258,34 @@ a {
 .layout__main {
   flex: 1;
   width: 100%;
-  background-color: orange;
   display: flex;
   padding: 40px 16px;
+}
+
+.habits {
+  width: 100%;
+  margin: 0 auto;
+}
+@media (max-width: md) {
+  .habits {
+    max-width: 50%;
+  }
+}
+.habits__title {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  font-size: 40px;
+  font-style: italic;
+  font-family: fantasy;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+.habits__title span {
+  background: #fff;
+  padding: 0 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */
