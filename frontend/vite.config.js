@@ -2,6 +2,7 @@ import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
+import path from "path";
 
 // Load environment variables from .env file
 config();
@@ -16,14 +17,18 @@ export default defineConfig({
   plugins: [
     react(),
     sentryVitePlugin({
-      // org: "kimicasamina",
-      // project: "habit-tracker",
       org: process.env.VITE_SENTRY_ORG,
       project: process.env.VITE_SENTRY_PROJECT,
       authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
     }),
   ],
 
+  // resolve shadcdn path
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   build: {
     sourcemap: true,
   },
@@ -33,8 +38,8 @@ export default defineConfig({
       "/api": {
         target:
           process.env.VITE_MODE === "development"
-            ? "http://localhost:8080/"
-            : "https://d4y0ne.onrender.com",
+            ? process.env.VITE_LOCALHOST
+            : process.env.VITE_CLIENT,
       },
 
       "/admin": {

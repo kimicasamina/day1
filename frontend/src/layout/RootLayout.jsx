@@ -4,9 +4,9 @@ import Nav from "../components/nav/Nav";
 
 export default function RootLayout() {
   return (
-    <div className="layout">
+    <div className="w-full min-h-screen flex flex-col ">
       <Nav />
-      <main className="layout__main">
+      <main className="flex-1 px-[70px] py-[40px]">
         <Outlet />
       </main>
     </div>

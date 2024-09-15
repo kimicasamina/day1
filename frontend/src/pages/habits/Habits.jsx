@@ -49,7 +49,7 @@ export default function Habits() {
   console.log("DATA: ", data);
 
   return (
-    <div className="habits">
+    <div className="flex flex-col">
       <div className="habits__title">
         <span className="">Habits</span>
       </div>
