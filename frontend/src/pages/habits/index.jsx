@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HabitList from "./components/habitList/HabitList";
+import HabitList from "./components/habitList";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch.jsx";
 
@@ -49,11 +49,17 @@ export default function Habits() {
   console.log("DATA: ", data);
 
   return (
-    <div className="flex flex-col">
-      <div className="habits__title">
-        <span className="">Habits</span>
+    <div className="w-full flex flex-col">
+      <h1 className="font-semibold text-5xl">Habits</h1>
+      <div className="flex gap-x-2">
+        <input
+          type="text"
+          className="input w-full"
+          placeholder="Walk the dog..."
+        />
+        <span className="">Icon</span>
       </div>
-      <HabitList habits={data.habits} />
+      <HabitList habits={habits} />
     </div>
   );
 }

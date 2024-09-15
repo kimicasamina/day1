@@ -15,7 +15,7 @@ import {
 
 export default function Nav() {
   return (
-    <nav className="navbar ">
+    <nav className="navbar max-w-screen-xl mx-auto px-4">
       <div className="navbar-start">
         <img src={calendar} alt="logo" className="w-[32px] h-[32px]" />
         <h1 className="">day1</h1>
