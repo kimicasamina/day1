@@ -44,11 +44,6 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => res.send("Server is ready..."));
 }
 
-// json api
-app.get("/api", function (req, res) {
-  res.send("Api is ready...");
-});
-
 app.use("/api/habits", habitRoute);
 // app.use(ErrorHandler);
 

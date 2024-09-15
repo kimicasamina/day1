@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import HabitList from "./components/habitList";
+import HabitList from "../habitList/index.jsx";
 import axios from "axios";
-import useFetch from "../../hooks/useFetch.jsx";
+import useFetch from "../../../hooks/useFetch.jsx";
+import { BiSolidPlusSquare } from "react-icons/bi";
 
 const habits = [
   {
@@ -49,15 +50,17 @@ export default function Habits() {
   console.log("DATA: ", data);
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full min-h-full flex flex-col gap-y-8 bg-base-200 text-base-content p-4">
       <h1 className="font-semibold text-5xl">Habits</h1>
-      <div className="flex gap-x-2">
+      <div className="flex align-items gap-x-2 px-2">
         <input
           type="text"
           className="input w-full"
           placeholder="Walk the dog..."
         />
-        <span className="">Icon</span>
+        <span className="cursor-pointer ">
+          <BiSolidPlusSquare className="w-[38px] h-full hover:text-primary-content" />
+        </span>
       </div>
       <HabitList habits={habits} />
     </div>

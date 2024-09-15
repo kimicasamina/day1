@@ -22,7 +22,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <html data-theme="light">
+    <html data-theme="cupcake">
       <App />
     </html>
   </StrictMode>

@@ -3,8 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "../layout/RootLayout";
 import Dashboard from "@/pages/dashboard";
-import Habits from "@/pages/habits";
-import Daily from "@/pages/daily";
+import Home from "@/pages/home/index";
 
 export const router = createBrowserRouter([
   {
@@ -17,12 +16,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/habits",
-        element: <Habits />,
+        element: <Home />,
       },
-      {
-        path: "/daily",
-        element: <Daily />,
-      },
+      // {
+      //   path: "/daily",
+      //   element: <Daily />,
+      // },
     ],
   },
 ]);

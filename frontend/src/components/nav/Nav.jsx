@@ -45,7 +45,7 @@ export default function Nav() {
           Login
         </Link>
         <Link to="/register" className="btn btn-sm btn-primary">
-          Join day1
+          Start your day1
         </Link>
       </ul>
     </nav>
