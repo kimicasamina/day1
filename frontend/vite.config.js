@@ -36,10 +36,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target:
-          process.env.VITE_MODE === "development"
-            ? process.env.VITE_LOCALHOST
-            : process.env.VITE_CLIENT,
+        target: process.env.VITE_CLIENT_URL,
       },
 
       "/admin": {
