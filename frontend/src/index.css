@@ -57,29 +57,66 @@
   }
 }
 
+/* ---- RESET ---- */
 @layer base {
+  * {
+    /* border: solid 1px red; */
+  }
+  body,
   html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  * {
-    @apply border-border;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
   }
 
-  #root {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
-  }
   body {
-    @apply bg-background text-foreground;
-    font-size: 16px;
-    line-height: 1.4;
-    color: theme(colors.base-content);
+    overflow-y: hidden;
+  }
+}
+
+/* ---- HOME ---- */
+@layer components {
+  .home {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    @apply gap-8;
+    grid-template-areas:
+      "profile status status"
+      "habits daily goals"
+      "habits daily goals";
+  }
+
+  .home .card {
+    /* @apply bg-base-200; */
+  }
+  .profile {
+    grid-area: profile;
+  }
+  .habits {
+    grid-area: habits;
+  }
+
+  .daily {
+    grid-area: daily;
+  }
+  .goals {
+    grid-area: goals;
+  }
+  .status {
+    grid-area: status;
+  }
+}
+
+/* ---- HABITS ---- */
+@layer components {
+  .habits {
+  }
+  .habits__title {
+  }
+
+  .habits__input {
+  }
+  .habits__list {
+    scrollbar-width: none;
   }
 }

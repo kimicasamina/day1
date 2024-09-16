@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import HabitList from "../habitList/index.jsx";
 import axios from "axios";
 import useFetch from "../../../hooks/useFetch.jsx";
-import { BiSolidPlusSquare } from "react-icons/bi";
-
+import { DialogTrigger, Dialog } from "@/components/ui/dialog.jsx";
+import { Button } from "@/components/ui/button";
+import CreateHabit from "@/components/modal/createHabit.jsx/index.jsx";
 const habits = [
   {
     id: crypto.randomUUID(),
@@ -22,6 +23,36 @@ const habits = [
     name: "Code for atleast 30 minutes",
     description: "Coding, coding",
     category: "Productivity",
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Brush teeth",
+    description: "brush teeth",
+    category: "Personal",
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Brush teeth",
+    description: "brush teeth",
+    category: "Personal",
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Code for atleast 30 minutes",
+    description: "Coding, coding",
+    category: "Productivity",
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Code for atleast 30 minutes",
+    description: "Coding, coding",
+    category: "Productivity",
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Walk the dog",
+    description: "Walking, walking",
+    category: "Health",
   },
 ];
 
@@ -50,19 +81,14 @@ export default function Habits() {
   console.log("DATA: ", data);
 
   return (
-    <div className="w-full min-h-full flex flex-col gap-y-8 bg-base-200 text-base-content p-4">
-      <h1 className="font-semibold text-5xl">Habits</h1>
-      <div className="flex align-items gap-x-2 px-2">
-        <input
-          type="text"
-          className="input w-full"
-          placeholder="Walk the dog..."
-        />
-        <span className="cursor-pointer ">
-          <BiSolidPlusSquare className="w-[38px] h-full hover:text-primary-content" />
-        </span>
+    <div className="habits overflow-y-hidden flex flex-col p-4">
+      <h1 className="habits__title font-semibold text-5xl">Habits</h1>
+      <div className="overflow-y-hidden flex flex-col gap-y-2 bg-base-200 p-2">
+        {/* <div className="habits__input flex justify-between align-items gap-x-2   ">
+        </div> */}
+        <CreateHabit />
+        <HabitList habits={habits} />
       </div>
-      <HabitList habits={habits} />
     </div>
   );
 }

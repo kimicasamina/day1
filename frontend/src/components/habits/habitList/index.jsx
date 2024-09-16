@@ -19,18 +19,18 @@ export default function HabitList({ habits }) {
   if (!habits) return <h1 className="">Loading...</h1>;
   console.log(habits);
   return (
-    <ul className="flex-1 flex flex-col gap-y-4 ">
+    <ul className="habits__list h-full overflow-y-scroll flex flex-col gap-y-2">
       {habits ? (
         habits.map((item, index) => (
           <li
-            className="relative w-full flex rounded-md bg-secondary py-2"
+            className="relative w-full flex rounded-sm bg-base-100 py-2"
             key={index}
           >
-            <span className="px-2">
-              <BiCheck className="w-[38px] h-full" />
+            <span className="px-2 flex justify-center items-center cursor-pointer">
+              <BiCheck className="w-[32px] h-[32px] " />
             </span>
-            <div className="flex-1 flex flex-col leading-snug">
-              <p className="font-semibold text-secondary-content text-xl ">
+            <div className="flex-1 flex flex-col leading-tight">
+              <p className="font-semibold text-secondary-content text-sm ">
                 {item.name}
               </p>
               <p className="font-normal text-secondary-content text-xs ">
@@ -71,5 +71,7 @@ export default function HabitList({ habits }) {
         <h1 className="">Habits empty.</h1>
       )}
     </ul>
+    // <div className="h-full flex flex-col justify-center overflow-y-hidden">
+    // </div>
   );
 }
