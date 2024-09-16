@@ -70,6 +70,7 @@
 
   body {
     overflow-y: hidden;
+    @apply leading-normal;
   }
 }
 

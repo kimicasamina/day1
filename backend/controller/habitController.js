@@ -3,7 +3,7 @@ import Habit from "../models/habitModel.js";
 
 export async function createHabit(req, res, next) {
   const { name, description, category } = req.body;
-
+  console.log("REQ BODY: ", +`${name} ${description} ${category}`);
   try {
     const habit = new Habit({ name, description, category });
     await habit.save();
