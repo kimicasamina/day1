@@ -82,12 +82,10 @@ export default function Habits() {
 
   return (
     <div className="habits overflow-y-hidden flex flex-col p-4">
-      <h1 className="habits__title font-semibold text-5xl">Habits</h1>
+      <h1 className="habits__title font-semibold text-4xl ">Habits</h1>
       <div className="overflow-y-hidden flex flex-col gap-y-2 bg-base-200 p-2">
-        {/* <div className="habits__input flex justify-between align-items gap-x-2   ">
-        </div> */}
         <CreateHabit />
-        <HabitList habits={habits} />
+        <HabitList habits={data.habits} />
       </div>
     </div>
   );
