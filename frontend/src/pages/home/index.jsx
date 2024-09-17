@@ -2,10 +2,13 @@ import React from "react";
 import Habits from "@/features/habits";
 import Status from "@/components/status/index";
 import Daily from "../daily";
+import { useUi } from "@/context/ui/ui";
+import CreateHabit from "@/components/modal/createHabit.jsx";
+import Modal from "@/components/modal/modal";
 
 export default function Home() {
   return (
-    <div className="home card h-full ">
+    <div className="home card h-full">
       <div className="profile card ">TOP</div>
       <div className="status card">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea

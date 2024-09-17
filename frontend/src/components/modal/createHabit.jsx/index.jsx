@@ -143,7 +143,6 @@ export default function CreateHabit() {
             </button>
           </DialogClose>
         </form>
-        ;
       </DialogContent>
     </Dialog>
   );
