@@ -121,3 +121,17 @@
     scrollbar-width: none;
   }
 }
+
+@layer utilities {
+  .center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .center-column {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .center-row {
+    @apply flex flex-row justify-center items-center;
+  }
+}

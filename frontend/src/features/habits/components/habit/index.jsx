@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import Modal from "@/components/modal/modal";
-import HabitDetails from "@/components/modal/habitDetails";
+import HabitDetails from "../habitDetails";
+
 export default function Habit({ habit }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -25,8 +26,9 @@ export default function Habit({ habit }) {
           {habit.description}
         </p>
       </div>
+
       <Modal isVisible={showModal} onClose={(e) => setShowModal(false)}>
-        <HabitDetails />
+        <HabitDetails habit={habit} />
       </Modal>
     </div>
   );

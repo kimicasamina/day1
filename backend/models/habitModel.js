@@ -8,7 +8,7 @@ const habitSchema = new mongoose.Schema({
   description: { type: String },
   category: {
     type: String,
-    enum: ["None", "Health", "Productivity", "Personal Development"],
+    enum: ["None", "Health", "Productivity", "Career", "Productivity"],
     required: true,
     default: "None",
   },
