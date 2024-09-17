@@ -1,9 +1,17 @@
-import React from "react";
-import { BiCheck } from "react-icons/bi";
+import HabitDetails from "@/components/modal/habitDetails";
+import Habit from "../habit";
+import React, { useState } from "react";
+
+import { TbPencil } from "react-icons/tb";
 
 export default function HabitList({ habits }) {
+  const [isOpen, setIsOpen] = useState(false);
   let days = [];
   let nameOfTheDay = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+  // function onViewDetails(e) {
+  //   if()
+  // }
 
   function getMonth() {
     for (let index = 1; index < 31; index++) {
@@ -18,60 +26,14 @@ export default function HabitList({ habits }) {
   getMonth();
   if (!habits) return <h1 className="">Loading...</h1>;
   console.log(habits);
+
   return (
     <ul className="habits__list h-full overflow-y-scroll flex flex-col gap-y-2">
       {habits ? (
-        habits.map((item, index) => (
-          <li
-            className="relative w-full flex rounded-sm bg-base-100 py-2"
-            key={index}
-          >
-            <span className="px-2 flex justify-center items-center cursor-pointer">
-              <BiCheck className="w-[32px] h-[32px] " />
-            </span>
-            <div className="flex-1 flex flex-col leading-tight">
-              <p className="font-semibold text-secondary-content text-sm ">
-                {item.name}
-              </p>
-              <p className="font-normal text-secondary-content text-xs ">
-                {item.description}
-              </p>
-            </div>
-          </li>
-          // <li className="habit" key={index}>
-          //   <p className="habit-name">{item.name}</p>
-          //   <p className="habit-description">{item.description}</p>
-          //   <div className="habit-tracker">
-          //     <div className="calendar">
-          //       <div className="week">
-          //         {nameOfTheDay.map((day, index) => (
-          //           <span className="nameOfTheDay" key={index}>
-          //             {day}
-          //           </span>
-          //         ))}
-          //       </div>
-
-          //       <div className="listOfDays">
-          //         {days
-          //           .map((item, index) => (
-          //             <div
-          //               className={`day ${item.status === "completed" ? "completed" : "missed"}`}
-          //               key={item.id}
-          //             >
-          //               {item.date}
-          //             </div>
-          //           ))
-          //           .slice(0, 7)}
-          //       </div>
-          //     </div>
-          //   </div>
-          // </li>
-        ))
+        habits.map((habit, index) => <Habit habit={habit} key={habit._id} />)
       ) : (
         <h1 className="">Habits empty.</h1>
       )}
     </ul>
-    // <div className="h-full flex flex-col justify-center overflow-y-hidden">
-    // </div>
   );
 }

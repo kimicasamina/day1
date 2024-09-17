@@ -1,33 +1,22 @@
-# React + Vite
+# day1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# KEY FEATURES
 
-Currently, two official plugins are available:
+1. Habits
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- View list of habits
+- Create new habit
+- View habit details
+- Delete habit
+- Edit habit
+- Check habit
 
-plugins: [
-react(),
-sentryVitePlugin({
-org: process.env.VITE_SENTRY_ORG,
-project: process.env.VITE_SENTRY_PROJECT,
-authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
-}),
-],
+# ON-GOING FEATURES
 
-    build: {
-      sourcemap: true,
-    },
-
-    server: {
-      proxy: {
-        "/api": {
-          target: "http://localhost:8080/api",
-        },
-
-        "/admin": {
-          target: "http://localhost:8081/",
-        },
-      },
-    },
+- Daily
+- Goals
+- User Profile
+- Login
+- Register
+- Log
+- Dashboard

@@ -119,10 +119,13 @@ export default function CreateHabit() {
             </label>
 
             <select
-              className="select select-bordered w-full bg-accent text-accent-content"
+              className="select select-bordered w-full bg-accent text-accent-content "
               name="category"
               {...register("category", { required: true })}
             >
+              <option disabled selected>
+                Select Category
+              </option>
               {options.map((item) => (
                 <option key={item} value={item}>
                   {item}
