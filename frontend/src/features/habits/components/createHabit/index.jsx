@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { BiSolidPlusSquare } from "react-icons/bi";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addHabit } from "@/store/habits/actions";
 
