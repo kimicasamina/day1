@@ -2,21 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { calendar } from "../../assets";
 import { TbUserFilled } from "react-icons/tb";
-
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/auth/auth";
+import axios from "axios";
 
 export default function Nav() {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout(e) {
+    const { data } = await axios.delete("/api/users/logout");
+    console.log("DATA: ", data);
+    if (data.success) {
+      setUser(null);
+      navigate("/login");
+    }
+    try {
+    } catch (error) {
+      console.log(error.response.message);
+    }
+  }
+
   return (
     <nav className="navbar max-w-screen-[1440px] mx-auto px-8 py-8 ">
       <div className="navbar-start">
@@ -50,7 +56,12 @@ export default function Nav() {
             <span className="py-2 rounded-md font-semibold ">
               {user.fullname}
             </span>
-            <button className="ml-4 btn btn-sm btn-primary">Logout</button>
+            <button
+              className="ml-4 btn btn-sm btn-primary"
+              onClick={(e) => handleLogout(e)}
+            >
+              Logout
+            </button>
           </div>
         ) : (
           <div className="w-full flex justify-end gap-x-4">
