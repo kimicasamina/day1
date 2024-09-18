@@ -1,0 +1,112 @@
+import mongoose from "mongoose";
+import User from "../models/userModel.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+export async function getAllUser(req, res, next) {
+  try {
+    const users = await User.find({});
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(401).json({ message: "No users found.", success: false });
+  }
+}
+
+export async function createUser(req, res, next) {
+  const { username, password, fullname, email } = req.body;
+  let existingUser;
+
+  // check if user already exists
+  try {
+    existingUser = await User.findOne({ email });
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ message: "Registration failed", created: false });
+  }
+
+  if (existingUser) {
+    return res
+      .status(401)
+      .json({ message: "User already exist! Login Instead" });
+  }
+
+  // create new user
+  const hashPassword = await bcrypt.hash(password, 10);
+  const user = await User.create({
+    username,
+    email,
+    fullname,
+    password: hashPassword,
+  });
+
+  return res.status(201).json({ success: true });
+}
+
+export async function loginUser(req, res, next) {
+  const { email, password } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    // check if user exist
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "User already exist! Login Instead" });
+    }
+
+    // check if password is correct
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res
+        .status(401)
+        .json({ message: "Incorrect password", success: false });
+    }
+
+    // create token
+    const token = jwt.sign({ user: { id: user._id } }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      expiresIn: "5m",
+    });
+    res.status(201).json({
+      user: {
+        _id: user._id,
+        fullname: user.fullname,
+        email: user.email,
+        username: user.username,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(401).json({ message: "Login Failed.", success: false });
+  }
+}
+
+export async function logoutUser(req, res, next) {
+  let token = req.cookies.access_token;
+  console.log("DELETE TOKEN", token);
+  try {
+    res.clearCookie("access_token");
+    res.json({ success: true, message: "You are logged out." });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getUserById(req, res, next) {
+  let user = req.user;
+  console.log("REQ USER_ID", user);
+
+  try {
+    const profile = await User.findById(user.id).select("-password");
+    return res.status(200).json({ profile });
+  } catch (err) {
+    console.log(err);
+    return res.status(401).json({ message: "User not found", success: false });
+  }
+}
