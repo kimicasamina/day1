@@ -98,13 +98,13 @@ export async function logoutUser(req, res, next) {
   }
 }
 
-export async function getUserById(req, res, next) {
-  let user = req.user;
-  console.log("REQ USER_ID", user);
+export async function getProfile(req, res, next) {
+  let user_token = req.user;
+  console.log("REQ USER_ID", user_token);
 
   try {
-    const profile = await User.findById(user.id).select("-password");
-    return res.status(200).json({ profile });
+    const user = await User.findById(user_token.id).select("-password");
+    return res.status(200).json(user);
   } catch (err) {
     console.log(err);
     return res.status(401).json({ message: "User not found", success: false });

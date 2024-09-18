@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Nav from "../components/nav/Nav";
-import Modal from "@/components/modal";
 
 export default function RootLayout() {
   return (

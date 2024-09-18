@@ -22,14 +22,17 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { ProvideUi } from "./context/ui/ui.jsx";
+import { ProvideAuth } from "./context/auth/auth.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <html data-theme="cupcake">
       <Provider store={store}>
-        <ProvideUi>
-          <App />
-        </ProvideUi>
+        <ProvideAuth>
+          <ProvideUi>
+            <App />
+          </ProvideUi>
+        </ProvideAuth>
       </Provider>
     </html>
   </StrictMode>

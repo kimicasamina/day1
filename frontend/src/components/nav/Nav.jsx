@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { calendar } from "../../assets";
+import { TbUserFilled } from "react-icons/tb";
 
 import {
   NavigationMenu,
@@ -12,8 +13,10 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { useAuth } from "@/context/auth/auth";
 
 export default function Nav() {
+  const { user } = useAuth();
   return (
     <nav className="navbar max-w-screen-[1440px] mx-auto px-8 py-8 ">
       <div className="navbar-start">
@@ -40,13 +43,25 @@ export default function Nav() {
           Daily
         </Link>
       </ul>
-      <ul className="menu-md navbar-end gap-x-2">
-        <Link to="/login" className="btn btn-sm btn-outline">
-          Login
-        </Link>
-        <Link to="/register" className="btn btn-sm btn-primary">
-          Start your day1
-        </Link>
+      <ul className="menu-md navbar-end gap-x-2 ">
+        {user ? (
+          <div className="w-full flex justify-end items-center gap-x-2">
+            <TbUserFilled className="" />
+            <span className="py-2 rounded-md font-semibold ">
+              {user.fullname}
+            </span>
+            <button className="ml-4 btn btn-sm btn-primary">Logout</button>
+          </div>
+        ) : (
+          <div className="w-full flex justify-end gap-x-4">
+            <Link to="/login" className="btn btn-sm btn-outline">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-sm btn-primary">
+              Start your day1
+            </Link>
+          </div>
+        )}
       </ul>
     </nav>
   );
