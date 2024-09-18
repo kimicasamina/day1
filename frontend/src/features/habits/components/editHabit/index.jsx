@@ -16,8 +16,8 @@ export default function EditHabit({ habit, onClose }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(editHabit(habit._id, newHabit));
     console.log("NEW HABIT: ", newHabit);
+    dispatch(editHabit(habit._id, newHabit));
     onClose();
   }
 
@@ -50,8 +50,12 @@ export default function EditHabit({ habit, onClose }) {
           <textarea
             name="description"
             type="text"
+            value={newHabit.description}
             className="textarea textarea-md textarea-primary bg-accent text-accent-content rounded-sm"
             placeholder="E.g, Walking walking"
+            onChange={(e) =>
+              setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
+            }
           ></textarea>
         </div>
 

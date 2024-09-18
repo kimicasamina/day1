@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/context/auth/auth";
 export default function Login() {
   const { user, setUser } = useAuth();
@@ -26,9 +27,12 @@ export default function Login() {
   }
 
   return (
-    <div className="w-full">
-      <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
-        <h2 className="text-3xl">Login</h2>
+    <div className="w-full grow flex justify-center items-center">
+      <form
+        className="w-full max-w-[50%] mx-auto flex flex-col gap-y-4 -mt-32"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <h2 className="text-4xl mb-4 font-semibold">Login to Your Account</h2>
 
         <div className="flex flex-col gap-y-4">
           <label htmlFor="" className="text-xl font-semibold">
@@ -56,9 +60,14 @@ export default function Login() {
             }
           />
         </div>
-        <button type="submit" className="btn btn-md btn-primary w-full">
-          Login
-        </button>
+        <div className="w-full flex gap-x-2 mt-8">
+          <button type="submit" className="btn btn-md btn-primary flex-1">
+            Login
+          </button>
+          <Link to="/register" className="btn btn-md btn-outline flex-1">
+            Register
+          </Link>
+        </div>
       </form>
     </div>
   );
