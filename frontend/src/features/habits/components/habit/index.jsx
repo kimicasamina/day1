@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import Modal from "@/components/modal/modal";
-import HabitDetails from "../habitDetails";
+import ViewHabit from "../viewHabit";
+import { useUi } from "@/context/ui/ui";
 
 export default function Habit({ habit }) {
   const [showModal, setShowModal] = useState(false);
-  console.log("HABIT: ", habit)
+
+  function closeModal() {
+    setShowModal(false);
+  }
+
   return (
     <div
       className="relative w-full flex items-center rounded-sm bg-base-100 cursor-pointer"
@@ -17,7 +22,7 @@ export default function Habit({ habit }) {
 
       <div
         className="flex-1 flex flex-col leading-tight p-2"
-        onClick={(e) => setShowModal(true)}
+        onClick={(e) => setShowModal((prev) => (prev = true))}
       >
         <p className="font-semibold text-secondary-content text-sm ">
           {habit?.name}
@@ -27,9 +32,11 @@ export default function Habit({ habit }) {
         </p>
       </div>
 
-      <Modal isVisible={showModal} onClose={(e) => setShowModal(false)}>
-        <HabitDetails habit={habit} />
-      </Modal>
+      {showModal && (
+        <Modal isVisible={showModal} onClose={closeModal}>
+          <ViewHabit habit={habit} onClose={closeModal} />
+        </Modal>
+      )}
     </div>
   );
 }

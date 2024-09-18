@@ -15,7 +15,8 @@ import { useUi } from "@/context/ui/ui.jsx";
 export default function Habits() {
   const dispatch = useDispatch();
   const habits = useSelector((state) => state.habits);
-  const { showModal, setShowModal, openModal, closeModal } = useUi();
+  // const { showModal, setShowModal, openModal, closeModal } = useUi();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,6 +30,10 @@ export default function Habits() {
   }, [dispatch]);
 
   console.log("SHOW HABITS: ", habits);
+
+  function closeModal() {
+    setShowModal(false);
+  }
 
   return (
     <div className="habits overflow-y-hidden flex flex-col p-4">

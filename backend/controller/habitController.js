@@ -40,12 +40,11 @@ export const updateHabit = async (req, res, next) => {
   const id = req.params.id;
   const { name, description, category } = req.body;
   try {
-    const habit = await Habit.findByIdAndUpdate({
-      _id: id,
-      name,
-      description,
-      category,
-    });
+    const habit = await Habit.findByIdAndUpdate(
+      { _id: id },
+      { name, description, category },
+      { new: true }
+    );
     res.status(201).json({ habit });
   } catch (err) {
     console.log(err);
