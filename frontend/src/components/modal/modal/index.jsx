@@ -13,7 +13,7 @@ export default function Modal({ isVisible, onClose, children }) {
   return (
     <div
       id="wrapper"
-      className="fixed inset-0 bg-black/70 flex justify-center items-center z-10"
+      className="fixed inset-0 bg-black/70 flex justify-center items-center z-10 cursor-default"
       onClick={handleCloseModal}
     >
       <div className="w-[50%] h-[60%] rounded-md bg-base-100 flex flex-col gap-y-2 p-6 ">

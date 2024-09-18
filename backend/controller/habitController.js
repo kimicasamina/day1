@@ -22,3 +22,32 @@ export const getHabits = async (req, res, next) => {
     console.log(err);
   }
 };
+
+export const deleteHabit = async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    const habit = await Habit.findByIdAndDelete(id);
+    res
+      .status(201)
+      .json({ status: "ok", message: "successfully deleted..", habit });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateHabit = async (req, res, next) => {
+  const id = req.params.id;
+  const { name, description, category } = req.body;
+  try {
+    const habit = await Habit.findByIdAndUpdate({
+      _id: id,
+      name,
+      description,
+      category,
+    });
+    res.status(201).json({ habit });
+  } catch (err) {
+    console.log(err);
+  }
+};

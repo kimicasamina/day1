@@ -64,9 +64,11 @@ export default function CreateHabit({ onClose }) {
           <input
             type="text"
             className="input input-md input-primary bg-accent text-accent-content"
-            placeholder="E.g, Walking walking"
             name="description"
+            placeholder="E.g, Walking walking"
+            {...register("description", { required: true })}
           />
+          {errors.description && <span>This field is required</span>}
         </div>
 
         <div className="flex flex-col gap-y-1">
