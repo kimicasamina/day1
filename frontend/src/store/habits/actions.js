@@ -21,8 +21,17 @@ export const addHabit = (habit) => async (dispatch) => {
 export const editHabit = (id, habit) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/habits/${id}/update`, habit);
-    console.log("DATA: ", data);
     dispatch({ type: "EDIT_HABIT", payload: data.habit });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteHabit = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`/api/habits/${id}/delete`);
+    console.log("DATA: ", data);
+    dispatch({ type: "DELETE_HABIT", payload: data.habit });
   } catch (err) {
     console.log(err);
   }

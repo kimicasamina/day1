@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
-import Modal from "@/components/modal/modal";
+import Modal from "@/components/modal";
 import ViewHabit from "../viewHabit";
-import { useUi } from "@/context/ui/ui";
 
 export default function Habit({ habit }) {
   const [showModal, setShowModal] = useState(false);

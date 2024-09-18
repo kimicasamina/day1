@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetchData.jsx";
 import { DialogTrigger, Dialog } from "@/components/ui/dialog.jsx";
 import { Button } from "@/components/ui/button";
 import CreateHabit from "./components/createHabit/index.jsx";
-import Modal from "@/components/modal/modal/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getHabits } from "@/store/habits/actions.js";

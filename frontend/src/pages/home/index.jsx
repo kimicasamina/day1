@@ -1,10 +1,5 @@
 import React from "react";
 import Habits from "@/features/habits";
-import Status from "@/components/status/index";
-import Daily from "../daily";
-import { useUi } from "@/context/ui/ui";
-import CreateHabit from "@/components/modal/createHabit.jsx";
-import Modal from "@/components/modal/modal";
 
 export default function Home() {
   return (

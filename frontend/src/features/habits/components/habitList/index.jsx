@@ -1,4 +1,3 @@
-import HabitDetails from "@/components/modal/habitDetails";
 import Habit from "../habit";
 import React, { useState } from "react";
 
