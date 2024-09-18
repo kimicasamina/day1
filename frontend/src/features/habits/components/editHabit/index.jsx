@@ -24,17 +24,17 @@ export default function EditHabit({ habit, onClose }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="grow flex flex-col gap-y-4 min-h-full justify-between"
+      className="grow flex flex-col gap-y-8 min-h-full justify-between"
     >
-      <div className="flex flex-col gap-y-4">
-        <h1 className="">EDIT HABIT</h1>
-        <div className="flex flex-col gap-y-1">
-          <label htmlFor="" className="text-accent-content">
+      <div className="grow flex flex-col gap-y-6">
+        <h2 className="text-3xl text-center font-semibold">Edit Habit</h2>
+        <div className="flex flex-col gap-y-2">
+          <label htmlFor="" className="text-base-content font-semibold text-xl">
             Name
           </label>
           <input
             type="text"
-            className="input input-md input-primary bg-accent text-accent-content"
+            className="input input-md input-primary bg-accent text-accent-content rounded-sm"
             name="name"
             value={newHabit.name}
             onChange={(e) =>
@@ -43,28 +43,25 @@ export default function EditHabit({ habit, onClose }) {
           />
         </div>
 
-        <div className="flex flex-col gap-y-1">
-          <label htmlFor="" className="text-accent-content">
+        <div className="flex flex-col gap-y-2">
+          <label htmlFor="" className="text-base-content font-semibold text-xl">
             Description
           </label>
-          <input
-            type="text"
-            className="input input-md input-primary bg-accent text-accent-content"
+          <textarea
             name="description"
-            value={newHabit.description}
-            onChange={(e) =>
-              setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
-            }
-          />
+            type="text"
+            className="textarea textarea-md textarea-primary bg-accent text-accent-content rounded-sm"
+            placeholder="E.g, Walking walking"
+          ></textarea>
         </div>
 
-        <div className="flex flex-col gap-y-1">
-          <label htmlFor="" className="text-accent-content">
+        <div className="flex flex-col gap-y-2">
+          <label htmlFor="" className="text-base-content font-semibold text-xl">
             Category
           </label>
 
           <select
-            className="select border-1 select-primary w-full bg-accent text-accent-content "
+            className="select border-1 select-primary w-full bg-accent text-accent-content rounded-sm"
             name="category"
             defaultValue={newHabit.category}
             onChange={(e) =>
