@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
   habits: [
     {
       type: mongoose.Schema.Types.ObjectId,
