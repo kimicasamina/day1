@@ -16,7 +16,7 @@ const habitSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  user: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },

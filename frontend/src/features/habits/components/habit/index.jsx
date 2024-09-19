@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
+import { TbPlus } from "react-icons/tb";
 import Modal from "@/components/modal";
 import ViewHabit from "../viewHabit";
 
@@ -10,13 +11,17 @@ export default function Habit({ habit }) {
     setShowModal(false);
   }
 
+  function handleCompleteHabit() {
+    console.log(habit);
+  }
+
   return (
     <div
-      className="relative w-full flex items-center rounded-sm bg-base-100 cursor-pointer"
+      className="relative w-full flex items-center rounded-md bg-base-100 cursor-pointer hover:bg-accent"
       key={habit?._id}
     >
-      <span className="px-2 flex justify-center items-center cursor-pointer h-full bg-neutral-content text-neutral">
-        <BiCheck className="w-[32px] h-[32px] " />
+      <span className="px-2 flex justify-center items-center cursor-pointer h-full bg-neutral-content text-neutral hover:bg-accent-foreground hover:text-accent rounded-tl-md rounded-bl-md transition-all duration-150">
+        <TbPlus className="w-[32px] h-[32px] " />
       </span>
 
       <div

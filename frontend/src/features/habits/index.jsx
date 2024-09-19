@@ -5,6 +5,8 @@ import Modal from "@/components/modal/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getHabits } from "@/store/habits/actions.js";
 import { BiSolidPlusSquare } from "react-icons/bi";
+import { TbFilter } from "react-icons/tb";
+import { TbSortAscendingLetters } from "react-icons/tb";
 
 export default function Habits() {
   const dispatch = useDispatch();
@@ -28,9 +30,18 @@ export default function Habits() {
   }
 
   return (
-    <div className="habits overflow-y-hidden flex flex-col p-4">
+    <div className="flex-1 grow habits overflow-y-hidden flex flex-col p-4  ">
       <h1 className="habits__title font-semibold text-4xl ">Habits</h1>
-      <div className="overflow-y-hidden h-full flex flex-col gap-y-2 bg-base-200 p-2">
+      <div className="flex gap-x-2 self-end">
+        <span className="flex items-center gap-x-1 hover:bg-base-200 cursor-pointer px-2 ">
+          <TbFilter /> Filter
+        </span>
+        <span className="flex items-center gap-x-1 hover:bg-base-200 cursor-pointer px-2 ">
+          <TbSortAscendingLetters />
+          Sort
+        </span>
+      </div>
+      <div className="overflow-y-hidden h-full flex flex-col gap-y-2 bg-base-200 p-2 rounded-md">
         <button
           className="leading-loose flex justify-center items-center w-full btn btn-md rounded-md btn-accent btn-accent-content"
           onClick={(e) => setShowModal((prev) => (prev = true))}
