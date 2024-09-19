@@ -22,13 +22,13 @@ export async function createUser(req, res, next) {
   } catch (error) {
     return res
       .status(401)
-      .json({ message: "Registration failed", created: false });
+      .json({ message: "Registration failed", success: true });
   }
 
   if (existingUser) {
     return res
       .status(401)
-      .json({ message: "User already exist! Login Instead" });
+      .json({ success: false, message: "User already exist! Login Instead" });
   }
 
   // create new user

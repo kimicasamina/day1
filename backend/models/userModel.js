@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  habit: [
+  habits: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Habit",

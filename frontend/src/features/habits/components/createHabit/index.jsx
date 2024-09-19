@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addHabit } from "@/store/habits/actions";
+import { useAuth } from "@/context/auth/auth";
 
 export default function CreateHabit({ onClose }) {
+  const { user } = useAuth();
   const options = ["Health", "Career", "Productivity"];
   const dispatch = useDispatch();
   const {
@@ -16,6 +18,7 @@ export default function CreateHabit({ onClose }) {
       name: "",
       description: "",
       category: "",
+      user: user._id,
     },
   });
 

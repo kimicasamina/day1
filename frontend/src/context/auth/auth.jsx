@@ -13,7 +13,7 @@ export function ProvideAuth({ children }) {
       if (!user) {
         try {
           const { data } = await axios.get("/api/users/getprofile");
-          console.log("DATA: ", data);
+          console.log("AUTH USER DATA: ", data);
           setUser(data);
           setIsFetching(false);
         } catch (err) {
