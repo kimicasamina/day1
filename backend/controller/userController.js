@@ -15,10 +15,12 @@ export async function getAllUser(req, res, next) {
 export async function createUser(req, res, next) {
   const { username, password, fullname, email } = req.body;
   let existingUser;
+  console.log("REGISTER")
 
   // check if user already exists
   try {
     existingUser = await User.findOne({ email });
+    console.log("USER: ", existingUser);
   } catch (error) {
     return res
       .status(401)

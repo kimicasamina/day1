@@ -32,11 +32,13 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
-
   server: {
     proxy: {
       "/api": {
-        target: process.env.VITE_CLIENT_URL,
+        target:
+          process.env.VITEMODE === "production"
+            ? process.env.VITE_CLIENT_URL
+            : "http://localhost:8080",
       },
 
       "/admin": {

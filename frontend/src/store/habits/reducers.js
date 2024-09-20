@@ -21,6 +21,16 @@ const habitsReducer = (habits = initialValue, action) => {
       return [...newHabits];
     }
 
+    case "CHECK_HABIT": {
+      const newHabits = habits.map((habit) => {
+        if (habit._id === action.payload._id) {
+          return { ...action.payload };
+        }
+        return habit;
+      });
+      return [...newHabits];
+    }
+
     case "DELETE_HABIT": {
       console.log("HABIT ID: ", action.payload);
       const newHabits = habits.filter(

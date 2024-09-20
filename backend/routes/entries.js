@@ -9,7 +9,6 @@ import {
 
 router.get("/", getEntries);
 router.get("/:id", getEntry);
-router.post("/:id", addEntry);
-router.put("/:id", updateEntry);
+router.post("/:habitId", addEntry);
 
 export default router;

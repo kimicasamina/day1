@@ -3,16 +3,21 @@ import { BiCheck } from "react-icons/bi";
 import { TbPlus } from "react-icons/tb";
 import Modal from "@/components/modal";
 import ViewHabit from "../viewHabit";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { checkHabit } from "@/store/habits/actions";
 
 export default function Habit({ habit }) {
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   function closeModal() {
     setShowModal(false);
   }
 
-  function handleCompleteHabit() {
-    console.log(habit);
+  async function handleCompleteHabit() {
+    dispatch(checkHabit(habit._id));
+
   }
 
   return (
@@ -20,7 +25,10 @@ export default function Habit({ habit }) {
       className="relative w-full flex items-center rounded-md bg-base-100 cursor-pointer hover:bg-accent"
       key={habit?._id}
     >
-      <span className="px-2 flex justify-center items-center cursor-pointer h-full bg-neutral-content text-neutral hover:bg-accent-foreground hover:text-accent rounded-tl-md rounded-bl-md transition-all duration-150">
+      <span
+        className={`px-2 flex justify-center items-center cursor-pointer h-full   rounded-tl-md rounded-bl-md transition-all duration-150 ${habit.completed ? "bg-slate-600 text-neutral hover:bg-accent-foreground hover:text-accent" : "bg-neutral-content text-neutral hover:bg-accent-foreground hover:text-accent"}`}
+        onClick={handleCompleteHabit}
+      >
         <TbPlus className="w-[32px] h-[32px] " />
       </span>
 

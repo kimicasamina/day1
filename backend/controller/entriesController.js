@@ -25,20 +25,22 @@ export async function getEntry(req, res, next) {
 }
 
 export async function addEntry(req, res, next) {
-  const { habitId, completed } = req.body;
+  const habitId = req.params.habitId;
 
   try {
-    const habit = await findById(habitId);
+    const habit = await Habit.findById(habitId);
     if (!habit) {
       res
         .status(401)
         .json({ success: false, message: "Habit id does not exist." });
     }
     const entries = await Entry.create({
-      habitId,
-      completed,
+      habitId: habit._id,
     });
 
+    await entries.save();
+    habit.entries.push(habit._id);
+    await habit.save();
     res.status(200).json(entries);
   } catch (error) {
     console.log(error);

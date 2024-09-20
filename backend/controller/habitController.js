@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Habit from "../models/habitModel.js";
 import User from "../models/userModel.js";
+import Entry from "../models/habitEntry.js";
 
 export async function createHabit(req, res, next) {
   const { name, description, category, user } = req.body;
@@ -57,6 +58,35 @@ export const updateHabit = async (req, res, next) => {
       { new: true }
     );
     res.status(201).json({ habit });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const checkHabit = async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    const habit = await Habit.findByIdAndUpdate(
+      { _id: id },
+      { completed: true },
+      { new: true }
+    );
+
+    if (!habit) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Habit id does not exist." });
+    }
+
+    const entry = await new Entry({
+      habitId: habit._id,
+    });
+
+    await entry.save();
+    habit.entries.push(habit._id);
+    await habit.save();
+    return res.status(201).json({ habit });
   } catch (err) {
     console.log(err);
   }

@@ -16,10 +16,20 @@ const habitSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  entries: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Entry",
+    },
+  ],
 });
 
 // const userModel = userConnection.model('user', userSchema)

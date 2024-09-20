@@ -8,11 +8,7 @@ const entrySchema = new mongoose.Schema({
   date: {
     type: Date,
     default: new Date(),
-  },
-  completed: {
-    type: Boolean,
-    default: false,
-  },
+  }
 });
 
 const Entry = mongoose.model("Entry", entrySchema);
