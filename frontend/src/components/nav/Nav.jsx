@@ -42,19 +42,13 @@ export default function Nav() {
         >
           Habits
         </Link>
-        <Link
-          to="/daily"
-          className="hover:link-accent  hover:border-b hover:border-accent px-2"
-        >
-          Daily
-        </Link>
       </ul>
       <ul className="menu-md navbar-end gap-x-2 ">
         {user ? (
           <div className="w-full flex justify-end items-center gap-x-2">
             <TbUserFilled className="" />
             <span className="py-2 rounded-md font-semibold ">
-              {user.fullname}
+              {user.username}
             </span>
             <button
               className="ml-4 btn btn-sm btn-primary"
