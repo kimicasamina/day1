@@ -13,6 +13,17 @@ export async function getEntries(req, res, next) {
   }
 }
 
+export async function getEntry(req, res, next) {
+  const id = req.params.id;
+  try {
+    const entry = await Entry.findById(id);
+    res.status(200).json(entry);
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ success: false, message: "something went wrong" });
+  }
+}
+
 export async function addEntry(req, res, next) {
   const { habitId, completed } = req.body;
 
