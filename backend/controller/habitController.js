@@ -55,7 +55,7 @@ export const updateHabit = async (req, res, next) => {
       { name, description, category },
       { new: true }
     ).populate("entries");
-    res.status(201).json({ habit });
+    res.status(201).json({ habit, success: true });
   } catch (err) {
     console.log(err);
   }

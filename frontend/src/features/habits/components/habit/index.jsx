@@ -6,6 +6,7 @@ import ViewHabit from "../viewHabit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { checkHabit } from "@/store/habits/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Habit({ habit }) {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,15 @@ export default function Habit({ habit }) {
   }
 
   async function handleCompleteHabit() {
-    dispatch(checkHabit(habit._id));
+    // dispatch(checkHabit(habit._id));
+
+    try {
+      await dispatch(checkHabit(habit._id)).then((data) => {
+        return toast.success("Habit completed!");
+      });
+    } catch (error) {
+      return toast.error("Something went wrong!");
+    }
   }
 
   return (
