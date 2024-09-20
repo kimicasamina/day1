@@ -23,7 +23,7 @@ export default function Modal({ isVisible, onClose, children }) {
         >
           <BiX />
         </button> */}
-        <div className="grow p-2">{children}</div>
+        <div className="grow">{children}</div>
       </div>
     </div>
   );

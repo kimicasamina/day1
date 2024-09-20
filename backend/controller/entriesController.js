@@ -26,6 +26,7 @@ export async function getEntry(req, res, next) {
 
 export async function addEntry(req, res, next) {
   const habitId = req.params.habitId;
+  const { date } = req.body;
 
   try {
     const habit = await Habit.findById(habitId);
@@ -34,14 +35,15 @@ export async function addEntry(req, res, next) {
         .status(401)
         .json({ success: false, message: "Habit id does not exist." });
     }
-    const entries = await Entry.create({
+    const entry = await Entry.create({
       habitId: habit._id,
+      date: new Date(date),
     });
 
-    await entries.save();
+    await entry.save();
     habit.entries.push(habit._id);
     await habit.save();
-    res.status(200).json(entries);
+    res.status(200).json(entry);
   } catch (error) {
     console.log(error);
     res.status(401).json({ success: false, message: "something went wrong" });

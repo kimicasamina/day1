@@ -134,4 +134,21 @@
   .center-row {
     @apply flex flex-row justify-center items-center;
   }
+
+  /* .completed {
+    position: relative;
+    z-index: 2;
+  }
+  .completed::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    z-index: 1;
+  } */
 }

@@ -5,7 +5,6 @@ import Entry from "../models/habitEntry.js";
 
 export async function createHabit(req, res, next) {
   const { name, description, category, user } = req.body;
-  console.log("REQ BODY: ", +`${name} ${description} ${category}`);
   try {
     let existingUser = await User.findById(user);
 
@@ -27,8 +26,7 @@ export async function createHabit(req, res, next) {
 
 export const getHabits = async (req, res, next) => {
   try {
-    const habits = await Habit.find({});
-    console.log("List of habits:", habits);
+    const habits = await Habit.find({}).populate("entries");
     res.status(200).json({ habits });
   } catch (err) {
     console.log(err);
@@ -56,7 +54,7 @@ export const updateHabit = async (req, res, next) => {
       { _id: id },
       { name, description, category },
       { new: true }
-    );
+    ).populate("entries");
     res.status(201).json({ habit });
   } catch (err) {
     console.log(err);
@@ -64,14 +62,16 @@ export const updateHabit = async (req, res, next) => {
 };
 
 export const checkHabit = async (req, res, next) => {
-  const id = req.params.id;
+  const habitId = req.params.id;
 
   try {
-    const habit = await Habit.findByIdAndUpdate(
-      { _id: id },
-      { completed: true },
+    const entry = await Entry.create({ habitId });
+
+    let habit = await Habit.findByIdAndUpdate(
+      { _id: habitId },
+      { completed: true, $push: { entries: entry._id } },
       { new: true }
-    );
+    ).populate("entries");
 
     if (!habit) {
       return res
@@ -79,13 +79,6 @@ export const checkHabit = async (req, res, next) => {
         .json({ success: false, message: "Habit id does not exist." });
     }
 
-    const entry = await new Entry({
-      habitId: habit._id,
-    });
-
-    await entry.save();
-    habit.entries.push(habit._id);
-    await habit.save();
     return res.status(201).json({ habit });
   } catch (err) {
     console.log(err);

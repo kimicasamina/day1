@@ -17,7 +17,6 @@ export default function Habit({ habit }) {
 
   async function handleCompleteHabit() {
     dispatch(checkHabit(habit._id));
-
   }
 
   return (
@@ -26,7 +25,7 @@ export default function Habit({ habit }) {
       key={habit?._id}
     >
       <span
-        className={`px-2 flex justify-center items-center cursor-pointer h-full   rounded-tl-md rounded-bl-md transition-all duration-150 ${habit.completed ? "bg-slate-600 text-neutral hover:bg-accent-foreground hover:text-accent" : "bg-neutral-content text-neutral hover:bg-accent-foreground hover:text-accent"}`}
+        className={`px-2 flex justify-center items-center cursor-pointer h-full   rounded-tl-md rounded-bl-md transition-all duration-150 hover:bg-accent-foreground hover:text-accent ${habit.completed ? "bg-success text-success-content " : "bg-neutral-content text-neutral "}`}
         onClick={handleCompleteHabit}
       >
         <TbPlus className="w-[32px] h-[32px] " />
