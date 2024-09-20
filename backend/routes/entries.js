@@ -3,13 +3,11 @@ const router = express.Router();
 import {
   getEntries,
   addEntry,
-  updateEntries,
-  getEntry,
+  updateEntry,
 } from "../controller/entriesController.js";
 
 router.get("/", getEntries);
-router.get("/:id", getEntry);
-router.post("/", addEntry);
-router.put("/:id", updateEntries);
+router.post("/add", addEntry);
+router.post("/:id/update", updateEntry);
 
 export default router;
