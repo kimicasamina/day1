@@ -15,7 +15,7 @@ export async function getAllUser(req, res, next) {
 export async function createUser(req, res, next) {
   const { username, password, fullname, email } = req.body;
   let existingUser;
-  console.log("REGISTER")
+  console.log("REGISTER");
 
   // check if user already exists
   try {
@@ -82,6 +82,7 @@ export async function loginUser(req, res, next) {
         email: user.email,
         username: user.username,
       },
+      success: true,
     });
   } catch (err) {
     console.log(err);
