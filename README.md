@@ -91,3 +91,10 @@ The application follows a client-server architecture:
       },
   }
   ```
+
+### WIP
+
+- add navbar link active states
+- store for list of entries
+- implement calendar with weekdays
+- dashboard and analytics

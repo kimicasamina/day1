@@ -24,22 +24,16 @@ export default function Nav() {
   }
 
   return (
-    <nav className="w-full max-w-screen-[1440px] h-[60px] mx-auto px-8 grid grid-cols-3 absolute">
+    <nav className="w-full bg-secondary max-w-screen-[1440px] h-[60px] mx-auto px-8 grid grid-cols-3 absolute">
       <div className="flex items-center">
         <img src={calendar} alt="logo" className="w-[32px] h-[32px]" />
         <h1 className="">day1</h1>
       </div>
       <ul className="flex justify-center items-center gap-x-4">
-        <Link
-          to="/"
-          className="hover:link-accent hover:border-b hover:border-accent px-2"
-        >
+        <Link to="/" className="hover:link-primary hover:border-b px-2">
           Dashboard
         </Link>
-        <Link
-          to="/habits"
-          className="hover:link-accent hover:border-b hover:border-accent px-2"
-        >
+        <Link to="/habits" className="hover:link-primary hover:border-b px-2">
           Habits
         </Link>
       </ul>
