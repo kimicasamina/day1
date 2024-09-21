@@ -1,32 +1,29 @@
-import { getDate } from "@/utils/getDate";
-import React, { useState } from "react";
+import { getMonth } from "@/utils/getMonth";
+import { getEntries } from "@/hooks/entries/getEntries";
+import { formatDate, formatDateShort } from "@/utils/dateHelpers";
+import React, { useEffect, useState } from "react";
 import { TbChevronLeft } from "react-icons/tb";
 import { TbChevronRight } from "react-icons/tb";
 import { TbCircleFilled } from "react-icons/tb";
 
 export default function Calendar({ markedDates }) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const datesWithCheck = getDate(markedDates);
-  console.log("DATES: ", datesWithCheck);
+  const [daysArray, setDaysArray] = useState([]);
+
   const renderDays = () => {
-    const daysInMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
-      0
-    ).getDate();
-    const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    const daysArray = new Array(getMonth(currentDate));
+    let habitEntries = getEntries(daysArray[0], markedDates);
+    habitEntries = habitEntries.sort((a, b) => new Date(a) - new Date(b));
 
     return (
-      <div className="w-full grid-grid-cols-7 ">
-        <div className="w-full grid grid-cols-7 py-2">
-          {daysArray.map((day) => (
-            <div
-              className={`text-center p-2  ${datesWithCheck.includes(day) ? "bg-success/80" : ""}`}
-            >
-              {day}
-            </div>
-          ))}
-        </div>
+      <div className="w-full grid grid-cols-7 ">
+        {habitEntries.map((item, index) => (
+          <div
+            className={`text-center ${item.entries.length !== 0 ? "bg-success" : ""}`}
+          >
+            {item.date.getDate()}
+          </div>
+        ))}
       </div>
     );
   };

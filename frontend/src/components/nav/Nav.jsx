@@ -24,12 +24,12 @@ export default function Nav() {
   }
 
   return (
-    <nav className="navbar max-w-screen-[1440px] mx-auto px-8 py-8 ">
-      <div className="navbar-start">
+    <nav className="w-full max-w-screen-[1440px] h-[60px] mx-auto px-8 grid grid-cols-3 absolute">
+      <div className="flex items-center">
         <img src={calendar} alt="logo" className="w-[32px] h-[32px]" />
         <h1 className="">day1</h1>
       </div>
-      <ul className="menu-md navbar-center gap-x-4">
+      <ul className="flex justify-center items-center gap-x-4">
         <Link
           to="/"
           className="hover:link-accent hover:border-b hover:border-accent px-2"
@@ -43,7 +43,7 @@ export default function Nav() {
           Habits
         </Link>
       </ul>
-      <ul className="menu-md navbar-end gap-x-2 ">
+      <ul className="flex items-center gap-x-2 ">
         {user ? (
           <div className="w-full flex justify-end items-center gap-x-2">
             <TbUserFilled className="" />
