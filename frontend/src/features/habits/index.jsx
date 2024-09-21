@@ -30,7 +30,7 @@ export default function Habits() {
   }
 
   return (
-    <div className="h-auto max-w-[50%] mx-auto habits overflow-y-hidden flex flex-col p-4  ">
+    <div className="h-auto w-full md:w-[50%] mx-auto habits overflow-y-hidden flex flex-col p-4  ">
       <h1 className="habits__title font-semibold text-4xl ">Habits</h1>
       <div className="flex gap-x-2 self-end">
         <span className="flex items-center gap-x-1 hover:bg-base-200 cursor-pointer px-2 ">
