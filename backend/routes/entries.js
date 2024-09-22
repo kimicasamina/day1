@@ -2,13 +2,12 @@ import express from "express";
 const router = express.Router();
 import {
   getEntries,
-  getEntry,
+  getHabitEntries,
   addEntry,
-  updateEntry,
 } from "../controller/entriesController.js";
 
 router.get("/", getEntries);
-router.get("/:id", getEntry);
+router.get("/:habitId", getHabitEntries);
 router.post("/:habitId", addEntry);
 
 export default router;

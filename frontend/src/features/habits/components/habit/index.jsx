@@ -3,7 +3,6 @@ import { BiCheck } from "react-icons/bi";
 import { TbPlus } from "react-icons/tb";
 import Modal from "@/components/modal";
 import ViewHabit from "../viewHabit";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { checkHabit } from "@/store/habits/actions";
 import toast, { Toaster } from "react-hot-toast";
@@ -19,11 +18,7 @@ export default function Habit({ habit }) {
     const entries = habit.entries.filter(
       (item) => formatDate(item.date) === formatDate(new Date())
     );
-
-    console.log("ENTRIES: ", entries);
-    if (entries.length > 0) {
-      setEntriesToday(entries);
-    }
+    setEntriesToday([...entries]);
     setIsLoading(false);
   }, [habit]);
 
@@ -33,14 +28,8 @@ export default function Habit({ habit }) {
 
   async function handleCompleteHabit() {
     try {
-      await dispatch(checkHabit(habit._id)).then(({ habit }) => {
-        console.log("DATA: ", habit);
-        const entries = habit.entries.filter(
-          (item) => formatDate(item.date) === formatDate(new Date())
-        );
-        setEntriesToday(entries);
-        return toast.success("Habit completed!");
-      });
+      dispatch(checkHabit(habit._id));
+      return toast.success("Habit completed!");
     } catch (error) {
       console.log("ERROR:", error);
       return toast.error("Something went wrong");
@@ -48,6 +37,7 @@ export default function Habit({ habit }) {
   }
 
   if (isLoading) return <h1 className="">Loading...</h1>;
+  console.log("ENTRIES::::", entriesToday);
 
   return (
     <div

@@ -40,8 +40,8 @@ export const deleteHabit = (id) => async (dispatch) => {
 export const checkHabit = (habitId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/habits/${habitId}/check`);
-    return data;
     dispatch({ type: "CHECK_HABIT", payload: data.habit });
+    return data;
   } catch (err) {
     console.log(err);
   }
