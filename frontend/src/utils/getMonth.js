@@ -14,12 +14,12 @@ export const getMonth = (currentDate) => {
     ) {
       arr.push(new Date(dt));
     }
-    console.log("date arr:", arr);
+    // console.log("date arr:", arr);
     return arr;
   };
 
   const daylist = getDaysArray(startDate, endDate);
-  console.log("Daylist: ", daylist);
+  // console.log("Daylist: ", daylist);
   //   daylist.map((v) => v.toISOString().slice(0, 10)).join("");
   //   console.log("daylist:", daylist);
   return daylist;

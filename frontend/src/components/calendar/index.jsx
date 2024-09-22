@@ -19,7 +19,8 @@ export default function Calendar({ markedDates }) {
       <div className="w-full grid grid-cols-7 ">
         {habitEntries.map((item, index) => (
           <div
-            className={`text-center ${item.entries.length !== 0 ? "bg-success" : ""}`}
+            className={`text-center p-2 ${item.entries.length !== 0 ? "bg-success" : ""}`}
+            key={index}
           >
             {item.date.getDate()}
           </div>
@@ -42,7 +43,7 @@ export default function Calendar({ markedDates }) {
 
   return (
     <div className="calendar w-full ">
-      <div className="header flex gap-x-2 w-full justify-between items-center py-2 border-b border-t">
+      <div className="header flex gap-x-2 w-full justify-between items-center border-b border-t py-4">
         <button className="btn-xs rounded-md" onClick={handlePrevMonth}>
           <TbChevronLeft className="w-6 h-6 hover:text-primary-content" />
         </button>
@@ -55,7 +56,6 @@ export default function Calendar({ markedDates }) {
         </button>
       </div>
       <>{renderDays()}</>
-      {/* <div className="days w-full grid grid-cols-7 ">{renderDays()}</div> */}
     </div>
   );
 }
