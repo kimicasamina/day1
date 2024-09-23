@@ -16,10 +16,10 @@ export default function Calendar({ datesWithCheck }) {
     habitEntries = habitEntries.sort((a, b) => new Date(a) - new Date(b));
 
     return (
-      <div className="w-full grid grid-cols-7 ">
+      <div className="w-full grid grid-cols-7">
         {habitEntries.map((item, index) => (
           <div
-            className={`text-center p-2 ${item.entries.length !== 0 ? "bg-info" : ""}`}
+            className={`flex center-row text-center h-[35px]  ${item.entries.length !== 0 ? "bg-info text-primary-content" : ""}`}
             key={index}
           >
             {item.date.getDate()}
@@ -43,7 +43,7 @@ export default function Calendar({ datesWithCheck }) {
 
   return (
     <div className="calendar w-full ">
-      <div className="header flex gap-x-2 w-full justify-between items-center border-b border-t py-4">
+      <div className="header flex gap-x-2 w-full justify-between items-center border-b border-t py-4 ">
         <button className="btn-xs rounded-md" onClick={handlePrevMonth}>
           <TbChevronLeft className="w-6 h-6 hover:text-primary-content" />
         </button>

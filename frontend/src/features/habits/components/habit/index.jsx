@@ -36,7 +36,7 @@ export default function Habit({ habit }) {
     }
   }
 
-  if (isLoading) return <h1 className="">Loading...</h1>;
+  if (isLoading) return <h1 className="">{""}</h1>;
   console.log("ENTRIES::::", entriesToday);
 
   return (
