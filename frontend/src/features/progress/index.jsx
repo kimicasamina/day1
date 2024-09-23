@@ -6,7 +6,7 @@ export default function Progress() {
   const habits = useSelector((state) => state.habits);
   return (
     <div className="h-full w-full p-4">
-      <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-20 justify-center overflow-y-scroll no-scrollbar sm:p-4 ">
+      <div className="w-full h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-20 justify-center overflow-y-scroll no-scrollbar sm:p-4 ">
         {habits.map((habit, index) => (
           <div
             className="w-full shadow-md bg-neutral p-4 rounded-sm text-neutral-content "
