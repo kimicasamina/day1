@@ -25,7 +25,7 @@ export default function Nav() {
   }
 
   return (
-    <nav className="w-full shadow-sm bg-accent max-w-screen-[1440px] h-[60px] mx-auto px-8 flex justify-between items-center absolute">
+    <nav className="w-full shadow-sm bg-accent max-w-[1440px] h-[60px] mx-auto px-4 flex justify-between items-center absolute">
       <div className="w-full max-w-[25%] flex items-center">
         <img src={calendar} alt="logo" className="w-[32px] h-[32px]" />
         <h1 className="text-xl ml-2">day1</h1>

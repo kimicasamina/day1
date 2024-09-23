@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <div className="w-full grow flex justify-center items-center">
       <form
-        className="w-full max-w-[50%] mx-auto flex flex-col gap-y-4 -mt-32"
+        className="w-full sm:max-w-[50%] mx-auto flex flex-col gap-y-4 -mt-32 px-4 sm:px-0"
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="text-4xl mb-4 font-semibold">Login to Your Account</h2>
