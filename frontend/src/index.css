@@ -135,6 +135,11 @@
     @apply flex flex-row justify-center items-center;
   }
 
+  .no-scrollbar {
+    /* display: none; */
+    scrollbar-width: none;
+  }
+
   /* .completed {
     position: relative;
     z-index: 2;

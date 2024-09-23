@@ -34,7 +34,7 @@ export default function ViewHabit({ habit, onClose }) {
             </span>
           ) : null}
           <div className="w-full grow mt-4">
-            <Calendar markedDates={habit.entries} />
+            <Calendar datesWithCheck={habit.entries} />
           </div>
           <div className="center-row self-end gap-x-2">
             <button

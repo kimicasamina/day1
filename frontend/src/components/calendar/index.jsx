@@ -6,20 +6,20 @@ import { TbChevronLeft } from "react-icons/tb";
 import { TbChevronRight } from "react-icons/tb";
 import { TbCircleFilled } from "react-icons/tb";
 
-export default function Calendar({ markedDates }) {
+export default function Calendar({ datesWithCheck }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [daysArray, setDaysArray] = useState([]);
 
   const renderDays = () => {
     const daysArray = new Array(getMonth(currentDate));
-    let habitEntries = getEntries(daysArray[0], markedDates);
+    let habitEntries = getEntries(daysArray[0], datesWithCheck);
     habitEntries = habitEntries.sort((a, b) => new Date(a) - new Date(b));
 
     return (
       <div className="w-full grid grid-cols-7 ">
         {habitEntries.map((item, index) => (
           <div
-            className={`text-center p-2 ${item.entries.length !== 0 ? "bg-success" : ""}`}
+            className={`text-center p-2 ${item.entries.length !== 0 ? "bg-info" : ""}`}
             key={index}
           >
             {item.date.getDate()}
