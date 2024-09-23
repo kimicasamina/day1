@@ -33,12 +33,16 @@ export default function Habits() {
     <div className=" h-auto w-full md:w-[50%] mx-auto habits overflow-y-hidden flex flex-col p-4  ">
       <h1 className="habits__title font-semibold text-4xl ">Habits</h1>
       <div className="flex gap-x-2 self-end">
-        <span className="flex items-center gap-x-1 hover:bg-base-200 cursor-pointer px-2 ">
-          <TbFilter /> Filter
+        <span className="flex items-center gap-x-1 hover:bg-base-200 text-sm cursor-pointer px-2 ">
+          <TbFilter /> All
         </span>
-        <span className="flex items-center gap-x-1 hover:bg-base-200 cursor-pointer px-2 ">
+        <span className="flex items-center gap-x-1 hover:bg-base-200 text-sm cursor-pointer px-2 ">
           <TbSortAscendingLetters />
-          Sort
+          Completed
+        </span>
+        <span className="flex items-center gap-x-1 hover:bg-base-200 text-sm cursor-pointer px-2 ">
+          <TbSortAscendingLetters />
+          Not Completed
         </span>
       </div>
       <div className="overflow-y-hidden h-full flex flex-col gap-y-2 bg-base-200 p-2 rounded-md">

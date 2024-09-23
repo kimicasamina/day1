@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Habit from "../models/habitModel.js";
 import User from "../models/userModel.js";
-import Entry from "../models/habitEntry.js";
+import Entry from "../models/entryModel.js";
 
 export async function getEntries(req, res, next) {
   try {

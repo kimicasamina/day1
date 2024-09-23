@@ -12,9 +12,10 @@ import jwt from "jsonwebtoken";
 import connectDB from "./config/db.js";
 // import { ErrorHandler } from "./middleware/errorHandler.js";
 
-import entriesRoute from "./routes/entries.js";
+import entriesRoute from "./routes/entriesRoute.js";
 import habitRoute from "./routes/habitRoute.js";
 import userRoute from "./routes/userRoute.js";
+import tagsRoute from "./routes/tagsRoute.js";
 import verifyToken from "./middleware/verifyToken.js";
 
 const app = express();
@@ -50,6 +51,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/api/habits", habitRoute);
 app.use("/api/users", userRoute);
 app.use("/api/entries", entriesRoute);
+app.use("/api/tags", tagsRoute);
 // app.use(ErrorHandler);
 
 app.get("*", function (req, res) {

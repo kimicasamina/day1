@@ -41,7 +41,7 @@ export default function Habit({ habit }) {
 
   return (
     <div
-      className="shadow-sm relative w-full flex items-center rounded-md bg-base-100 cursor-pointer hover:bg-accent"
+      className="shadow-sm relative w-full flex items-center rounded-md bg-primary-foreground cursor-pointer hover:bg-accent"
       key={habit?._id}
     >
       <span
