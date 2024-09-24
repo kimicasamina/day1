@@ -7,7 +7,7 @@ function App() {
   return (
     <ErrorBoundary fallback={"An error has occurred"}>
       <Toaster />
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </ErrorBoundary>
   );
 }

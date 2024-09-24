@@ -15,7 +15,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-full flex flex-col   bg-primary-foreground">
+    <div className="h-full flex flex-col sm:p-8 bg-primary-foreground">
       <SearchBar />
       <Habits habits={habits} tags={tags} />
     </div>

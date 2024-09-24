@@ -19,9 +19,8 @@ export default function ProfileLayout() {
         console.log(err);
       }
     }
-    if (user) {
-      fetchData();
-    }
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -32,9 +31,8 @@ export default function ProfileLayout() {
         console.log(err);
       }
     }
-    if (user) {
-      fetchData();
-    }
+
+    fetchData();
   }, []);
 
   if (isFetching && !user) {
