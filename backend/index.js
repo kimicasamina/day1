@@ -48,10 +48,10 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => res.send("Server is ready..."));
 }
 
-app.use("/api/habits", habitRoute);
+app.use("/api/habits", verifyToken, habitRoute);
 app.use("/api/users", userRoute);
-app.use("/api/entries", entriesRoute);
-app.use("/api/tags", tagsRoute);
+app.use("/api/entries", verifyToken, entriesRoute);
+app.use("/api/tags", verifyToken, tagsRoute);
 // app.use(ErrorHandler);
 
 app.get("*", function (req, res) {

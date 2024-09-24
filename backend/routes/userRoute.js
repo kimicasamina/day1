@@ -9,7 +9,7 @@ import {
 } from "../controller/userController.js";
 import verifyToken from "../middleware/verifyToken.js";
 
-router.get("/", getAllUser);
+router.get("/", verifyToken, getAllUser);
 router.post("/register", createUser);
 router.post("/login", loginUser);
 router.delete("/logout", logoutUser);

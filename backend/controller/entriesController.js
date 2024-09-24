@@ -27,11 +27,12 @@ export async function getHabitEntries(req, res, next) {
 
 export async function addEntry(req, res, next) {
   const habitId = req.params.habitId;
-  // const { date } = req.body;
+  const { date } = req.body;
 
   try {
     const entry = await Entry.create({
       habitId,
+      date: new Date(date),
     });
 
     const habit = await Habit.findByIdAndUpdate(
