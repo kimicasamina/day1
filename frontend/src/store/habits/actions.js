@@ -12,7 +12,7 @@ export const getHabits = () => async (dispatch) => {
 export const addHabit = (habit) => async (dispatch) => {
   try {
     const { data } = await axios.post("/api/habits/create", habit);
-    dispatch({ type: "ADD_HABIT", payload: data });
+    dispatch({ type: "ADD_HABIT", payload: data.habit });
   } catch (err) {
     console.log(err);
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addHabit } from "@/store/habits/actions";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/auth/auth";
@@ -9,17 +9,18 @@ import axios from "axios";
 
 export default function CreateHabit({ onClose }) {
   const { user } = useAuth();
-  const [tags, setTags] = useState([]);
+  const tags = useSelector((state) => state.tags);
+  const tagOptions = tags.map((tag) => ({
+    value: tag._id,
+    label: tag.name,
+  }));
+  console.log("TAG OPTIONS: ", tagOptions);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     user: user._id,
   });
   const [selectedOption, setSelectedOption] = useState(null);
-  const tagOptions = tags.map((tag) => ({
-    value: tag._id,
-    label: tag.name,
-  }));
   const dispatch = useDispatch();
 
   async function handleSubmit(e) {
@@ -39,15 +40,9 @@ export default function CreateHabit({ onClose }) {
     }
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      const { data } = await axios.get("/api/tags");
-      console.log("ENTRIES: ", data);
-      setTags([...data]);
-    }
-
-    fetchData();
-  }, []);
+  if (!tags) {
+    return <h1 className="">Loading...</h1>;
+  }
 
   return (
     <form

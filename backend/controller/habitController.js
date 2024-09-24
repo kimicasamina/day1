@@ -24,7 +24,7 @@ export async function createHabit(req, res, next) {
     await habit.save();
     existingUser.habits.push(habit);
     await existingUser.save();
-    res.status(200).json(habit);
+    res.status(200).json({ habit });
   } catch (error) {
     console.log(error);
   }
@@ -65,13 +65,23 @@ export const deleteHabit = async (req, res, next) => {
 
 export const updateHabit = async (req, res, next) => {
   const id = req.params.id;
-  const { name, description, category } = req.body;
+  const { name, description, tags } = req.body;
   try {
     const habit = await Habit.findByIdAndUpdate(
       { _id: id },
-      { name, description, category },
+      { name, description, tags },
       { new: true }
-    ).populate("entries");
+    ).populate([
+      {
+        path: "entries",
+        // select: "field",
+        model: Entry,
+      },
+      {
+        path: "tags",
+        model: Tag,
+      },
+    ]);
     res.status(201).json({ habit, success: true });
   } catch (err) {
     console.log(err);

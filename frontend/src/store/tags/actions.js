@@ -12,7 +12,7 @@ export const getTags = () => async (dispatch) => {
 export const addTag = (name) => async (dispatch) => {
   try {
     const { data } = await axios.post("/api/tags", { name });
-    dispatch({ type: "ADD_TAGS", payload: data.tags });
+    dispatch({ type: "ADD_TAGS", payload: data.tag });
   } catch (err) {
     console.log(err);
   }

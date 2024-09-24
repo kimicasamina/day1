@@ -7,7 +7,7 @@ import Tag from "../models/tagModel.js";
 export async function getTags(req, res, next) {
   try {
     const tags = await Tag.find({});
-    return res.status(200).json(tags);
+    return res.status(200).json({ tags });
   } catch (error) {
     console.log(error);
   }
@@ -17,7 +17,7 @@ export async function getTagById(req, res, next) {
   const tagId = req.params.tagId;
   try {
     const tag = await Tag.findById(tagId);
-    return res.status(200).json(tag);
+    return res.status(200).json({ tag });
   } catch (error) {
     console.log(error);
   }
@@ -28,7 +28,7 @@ export async function createTag(req, res, next) {
 
   try {
     const tag = await Tag.create({ name });
-    return res.status(201).json(tag);
+    return res.status(201).json({ tag });
   } catch (error) {
     console.log(error);
   }
@@ -42,7 +42,7 @@ export async function updateTag(req, res, next) {
       { name },
       { new: true }
     );
-    return res.status(201).json(tag);
+    return res.status(201).json({ tag });
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +52,7 @@ export async function deleteTag(req, res, next) {
   const tagId = req.params.tagId;
   try {
     const tag = await Tag.findByIdAndDelete({ _id: tagId }, { new: true });
-    return res.status(201).json(tag);
+    return res.status(201).json({ tag });
   } catch (error) {
     console.log(error);
   }

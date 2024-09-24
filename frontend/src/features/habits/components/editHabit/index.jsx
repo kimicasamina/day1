@@ -1,19 +1,20 @@
 import { useUi } from "@/context/ui/ui";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editHabit } from "@/store/habits/actions";
 import Select from "react-select";
 
 export default function EditHabit({ habit, onClose }) {
   const { closeModal } = useUi();
   const dispatch = useDispatch();
-  const [newHabit, setNewHabit] = useState({
+  const [formData, setFormData] = useState({
     name: habit.name,
     description: habit.description,
-    tags: habit.tags,
   });
 
   const [selectedOption, setSelectedOption] = useState(null);
+  console.log("SELECTED: ", selectedOption);
+  const tags = useSelector((state) => state.tags);
   const tagOptions = tags.map((tag) => ({
     value: tag._id,
     label: tag.name,
@@ -21,8 +22,11 @@ export default function EditHabit({ habit, onClose }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("NEW HABIT: ", newHabit);
-    dispatch(editHabit(habit._id, newHabit));
+    const updatedHabit = {
+      ...formData,
+      tags: selectedOption ? selectedOption.map((item) => item.value) : null,
+    };
+    dispatch(editHabit(habit._id, updatedHabit));
     onClose();
   }
 
@@ -41,9 +45,9 @@ export default function EditHabit({ habit, onClose }) {
             type="text"
             className="input input-md input-primary bg-accent text-accent-content rounded-sm"
             name="name"
-            value={newHabit.name}
+            value={formData.name}
             onChange={(e) =>
-              setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
+              setFormData({ ...formData, [e.target.name]: e.target.value })
             }
           />
         </div>
@@ -55,11 +59,11 @@ export default function EditHabit({ habit, onClose }) {
           <textarea
             name="description"
             type="text"
-            value={newHabit.description}
+            value={formData.description}
             className="textarea textarea-md textarea-primary bg-accent text-accent-content rounded-sm"
             placeholder="E.g, Walking walking"
             onChange={(e) =>
-              setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
+              setFormData({ ...formData, [e.target.name]: e.target.value })
             }
           ></textarea>
         </div>
@@ -69,20 +73,11 @@ export default function EditHabit({ habit, onClose }) {
             Tags
           </label>
 
-          <select
-            className="select border-1 select-primary w-full bg-accent text-accent-content rounded-sm"
-            name="tags"
-            defaultValue={newHabit.tags}
-            onChange={(e) =>
-              setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
-            }
-          >
-            {options.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <Select
+            onChange={(option) => setSelectedOption(option)}
+            options={tagOptions}
+            isMulti
+          />
         </div>
       </div>
 
