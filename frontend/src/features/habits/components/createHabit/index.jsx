@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addHabit } from "@/store/habits/actions";
 import { useAuth } from "@/context/auth/auth";
+import Select from "react-select";
+import axios from "axios";
+
+// const options = [
+//   { value: 'chocolate', label: 'Chocolate' },
+//   { value: 'strawberry', label: 'Strawberry' },
+//   { value: 'vanilla', label: 'Vanilla' }
+// ]
 
 export default function CreateHabit({ onClose }) {
   const { user } = useAuth();
-  const options = ["Health", "Career", "Productivity"];
+  const [tags, setTags] = useState([]);
+  const tagOptions = tags.map((tag) => ({
+    value: tag.name,
+    label: tag.name,
+  }));
+  console.log("TAG OPTIONS: ", tagOptions);
   const dispatch = useDispatch();
   const {
     control,
@@ -17,7 +30,7 @@ export default function CreateHabit({ onClose }) {
     defaultValues: {
       name: "",
       description: "",
-      category: "",
+      tags: "",
       user: user._id,
     },
   });
@@ -28,7 +41,7 @@ export default function CreateHabit({ onClose }) {
       const newHabit = {
         name: data.name,
         description: data.description,
-        category: data.category,
+        tags: data.tags,
       };
       dispatch(addHabit(data));
       onClose();
@@ -36,6 +49,16 @@ export default function CreateHabit({ onClose }) {
       console.log("ERROR: ", error);
     }
   }
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await axios.get("/api/tags");
+      console.log("ENTRIES: ", data);
+      setTags([...data]);
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <form
@@ -70,31 +93,16 @@ export default function CreateHabit({ onClose }) {
             // cols="30"
             // rows="10"
             placeholder="E.g, Walking walking"
-            {...register("description", { required: true })}
+            {...register("description")}
           ></textarea>
-          {errors.description && <span>This field is required</span>}
+          {/* {errors.description && <span>This field is required</span>} */}
         </div>
 
         <div className="flex flex-col gap-y-2">
           <label htmlFor="" className="text-base-content font-semibold text-xl">
-            Category
+            Tags
           </label>
-
-          <select
-            className="select border-1 select-primary w-full bg-accent text-accent-content rounded-sm"
-            name="category"
-            defaultValue=""
-            {...register("category", { required: true })}
-          >
-            {/* <option disabled selected>
-              Select Category
-            </option> */}
-            {options.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <Select options={tagOptions} isMulti />
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import User from "../models/userModel.js";
 import Entry from "../models/entryModel.js";
 
 export async function createHabit(req, res, next) {
-  const { name, description, category, user } = req.body;
+  const { name, description, tags, user } = req.body;
   try {
     let existingUser = await User.findById(user);
 
@@ -14,7 +14,7 @@ export async function createHabit(req, res, next) {
         .json({ success: false, message: "User not found" });
     }
 
-    const habit = new Habit({ name, description, category, user });
+    const habit = new Habit({ name, description, tags, user });
     await habit.save();
     existingUser.habits.push(habit);
     await existingUser.save();

@@ -14,6 +14,7 @@ export default function CreateTag({ onClose }) {
       onClose();
     } catch (error) {
       console.log(error);
+      return toast.error("Something went wrong");
     }
   }
 

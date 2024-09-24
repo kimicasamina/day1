@@ -9,7 +9,7 @@ export default function EditHabit({ habit, onClose }) {
   const [newHabit, setNewHabit] = useState({
     name: habit.name,
     description: habit.description,
-    category: habit.category,
+    tags: habit.tags,
   });
 
   const options = ["Health", "Career", "Productivity"];
@@ -61,13 +61,13 @@ export default function EditHabit({ habit, onClose }) {
 
         <div className="flex flex-col gap-y-2">
           <label htmlFor="" className="text-base-content font-semibold text-xl">
-            Category
+            Tags
           </label>
 
           <select
             className="select border-1 select-primary w-full bg-accent text-accent-content rounded-sm"
-            name="category"
-            defaultValue={newHabit.category}
+            name="tags"
+            defaultValue={newHabit.tags}
             onChange={(e) =>
               setNewHabit({ ...newHabit, [e.target.name]: e.target.value })
             }

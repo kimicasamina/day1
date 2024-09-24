@@ -28,9 +28,9 @@ export default function ViewHabit({ habit, onClose }) {
         <>
           <h2 className="text-2xl font-semibold">{habit?.name}</h2>
           <p className="text-sm">{habit?.description}</p>
-          {habit?.category ? (
+          {habit?.tags ? (
             <span className="px-2 max-w-fit bg-neutral text-neutral-content">
-              {habit?.category}
+              {habit?.tags}
             </span>
           ) : null}
           <div className="w-full grow mt-4">
