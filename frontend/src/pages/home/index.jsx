@@ -15,9 +15,11 @@ export default function Home() {
   }
 
   return (
-    <div className="h-full flex flex-col sm:p-8 bg-primary-foreground">
-      <SearchBar />
-      <Habits habits={habits} tags={tags} />
+    <div className="h-full w-full bg-primary-foreground">
+      <div className="h-full w-full sm:max-w-[50%] flex flex-col sm:p-8 mx-auto">
+        <SearchBar />
+        <Habits habits={habits} tags={tags} />
+      </div>
     </div>
   );
 }

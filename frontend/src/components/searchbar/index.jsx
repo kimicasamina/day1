@@ -11,15 +11,26 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="w-full sm:max-w-[350px] mx-auto py-10 flex gap-x-2 px-4 sm:px-0">
+    <div className="w-full mx-auto py-10 flex gap-x-2 sm:px-0 sm:px-4">
       <input
         type="text"
-        className="w-full py-2 px-4 input input-accent input-bordered "
+        className="w-full py-2 px-4 input input-accent input-bordered rounded-md"
         placeholder="Search a keyword..."
       />
-      <span className="btn btn-square " onClick={(e) => setShowModal(true)}>
+      <div
+        className="flex-1 rounded-md px-2 border flex gap-x-2 items-center cursor-pointer hover:bg-secondary"
+        onClick={(e) => setShowModal(true)}
+      >
+        <span className="">Tags</span>
         <TbTags className="w-8 h-8" />
-      </span>
+      </div>
+      {/* <div
+        className="rounded-md p-2 border flex gap-x-2 items-center"
+        onClick={(e) => setShowModal(true)}
+      >
+        <span className="">Tags</span>
+        <TbTags className="w-8 h-8" />
+      </div> */}
       {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>
           <CreateTag onClose={closeModal} />
