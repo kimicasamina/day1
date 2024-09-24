@@ -8,7 +8,7 @@ export default function CreateTag({ onClose }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/tags/", { name });
+      const { data } = await axios.post("/api/tags", { name });
       console.log("TAGS: ", data);
       toast.success("Sucessfully added a new tag");
       onClose();

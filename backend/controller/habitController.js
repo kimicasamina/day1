@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Habit from "../models/habitModel.js";
 import User from "../models/userModel.js";
 import Entry from "../models/entryModel.js";
+import Tag from "../models/tagModel.js";
 
 export async function createHabit(req, res, next) {
   const { name, description, tags, user } = req.body;
@@ -14,7 +15,12 @@ export async function createHabit(req, res, next) {
         .json({ success: false, message: "User not found" });
     }
 
-    const habit = new Habit({ name, description, tags, user });
+    let habit = new Habit({
+      name,
+      description,
+      user,
+      tags: tags ? await Tag.find({ _id: { $in: tags } }) : [],
+    });
     await habit.save();
     existingUser.habits.push(habit);
     await existingUser.save();
@@ -26,7 +32,18 @@ export async function createHabit(req, res, next) {
 
 export const getHabits = async (req, res, next) => {
   try {
-    const habits = await Habit.find({}).populate("entries");
+    const habits = await Habit.find({}).populate([
+      {
+        path: "entries",
+        // select: "field",
+        model: Entry,
+      },
+      {
+        path: "tags",
+        model: Tag,
+      },
+    ]);
+
     res.status(200).json({ habits });
   } catch (err) {
     console.log(err);

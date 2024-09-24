@@ -6,12 +6,6 @@ const habitSchema = new mongoose.Schema({
     required: true,
   },
   description: { type: String },
-  // category: {
-  //   type: String,
-  //   enum: ["None", "Health", "Productivity", "Career", "Productivity"],
-  //   required: true,
-  //   default: "None",
-  // },
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,
