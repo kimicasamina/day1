@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
+import { useDispatch } from "react-redux";
+import { addTag } from "@/store/tags/actions";
 export default function CreateTag({ onClose }) {
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/tags", { name });
-      console.log("TAGS: ", data);
+      dispatch(addTag(name));
       toast.success("Sucessfully added a new tag");
       onClose();
     } catch (error) {

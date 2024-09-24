@@ -21,9 +21,16 @@ export async function createHabit(req, res, next) {
       user,
       tags: tags ? await Tag.find({ _id: { $in: tags } }) : [],
     });
+
     await habit.save();
     existingUser.habits.push(habit);
     await existingUser.save();
+    habit = await Habit.findById(habit._id).populate([
+      {
+        path: "tags",
+        model: Tag,
+      },
+    ]);
     res.status(200).json({ habit });
   } catch (error) {
     console.log(error);
@@ -98,7 +105,17 @@ export const checkHabit = async (req, res, next) => {
       { _id: habitId },
       { completed: true, $push: { entries: entry._id } },
       { new: true }
-    ).populate("entries");
+    ).populate([
+      {
+        path: "entries",
+        // select: "field",
+        model: Entry,
+      },
+      {
+        path: "tags",
+        model: Tag,
+      },
+    ]);
 
     if (!habit) {
       return res
