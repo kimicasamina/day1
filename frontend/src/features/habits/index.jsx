@@ -8,22 +8,8 @@ import { BiSolidPlusSquare } from "react-icons/bi";
 import { TbFilter } from "react-icons/tb";
 import { TbSortAscendingLetters } from "react-icons/tb";
 
-export default function Habits() {
-  const dispatch = useDispatch();
-  const habits = useSelector((state) => state.habits);
-
+export default function Habits({ habits, tags }) {
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        dispatch(getHabits());
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, [dispatch]);
 
   function closeModal() {
     setShowModal(false);

@@ -2,6 +2,7 @@ import { useUi } from "@/context/ui/ui";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editHabit } from "@/store/habits/actions";
+import Select from "react-select";
 
 export default function EditHabit({ habit, onClose }) {
   const { closeModal } = useUi();
@@ -12,7 +13,11 @@ export default function EditHabit({ habit, onClose }) {
     tags: habit.tags,
   });
 
-  const options = ["Health", "Career", "Productivity"];
+  const [selectedOption, setSelectedOption] = useState(null);
+  const tagOptions = tags.map((tag) => ({
+    value: tag._id,
+    label: tag.name,
+  }));
 
   function handleSubmit(e) {
     e.preventDefault();

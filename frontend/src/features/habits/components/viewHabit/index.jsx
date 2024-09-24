@@ -28,11 +28,19 @@ export default function ViewHabit({ habit, onClose }) {
         <>
           <h2 className="text-2xl font-semibold">{habit?.name}</h2>
           <p className="text-sm">{habit?.description}</p>
-          {habit?.tags ? (
-            <span className="px-2 max-w-fit bg-neutral text-neutral-content">
-              {habit?.tags}
-            </span>
-          ) : null}
+
+          <div className="flex gap-x-2">
+            {habit.tags.length > 0
+              ? habit.tags.map((tag) => (
+                  <span
+                    className="px-2 max-w-fit badge-neutral badge-md rounded-badge"
+                    key={tag._id}
+                  >
+                    {tag.name}
+                  </span>
+                ))
+              : null}
+          </div>
           <div className="w-full grow mt-4">
             <Calendar datesWithCheck={habit.entries} />
           </div>
