@@ -9,27 +9,6 @@ export default function Home() {
   const habits = useSelector((state) => state.habits);
   const tags = useSelector((state) => state.tags);
   const dispatch = useDispatch();
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        dispatch(getTags());
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        dispatch(getHabits());
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
 
   if (!tags && !habits) {
     return <h1 className="">Loading...</h1>;
