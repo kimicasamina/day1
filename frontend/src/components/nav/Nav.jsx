@@ -26,9 +26,9 @@ export default function Nav() {
 
   return (
     <nav className="w-full drop-shadow-sm bg-accent max-w-[1440px] mx-auto px-4 min-h-[80px] flex justify-between items-center ">
-      <div className="w-full max-w-[25%] flex items-center">
-        <img src={calendar} alt="logo" className="w-[32px] h-[32px]" />
-        <h1 className="text-xl ml-2">day1</h1>
+      <div className="brand w-full max-w-[25%] flex items-center">
+        <img src={calendar} alt="brand__logo" className="w-[32px] h-[32px]" />
+        <h1 className="text-xl ml-2 brand__name">day1</h1>
       </div>
       <ul className="w-full max-w-[25%] flex justify-center items-center gap-x-4">
         <Link

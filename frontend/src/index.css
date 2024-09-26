@@ -81,51 +81,39 @@
   }
 }
 
-/* ---- HOME ---- */
-@layer components {
-  .home {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    @apply gap-8;
-    grid-template-areas:
-      "profile status status"
-      "habits daily goals"
-      "habits daily goals";
-  }
-
-  .home .card {
-    /* @apply bg-base-200; */
-  }
-  .profile {
-    grid-area: profile;
-  }
-  .habits {
-    grid-area: habits;
-  }
-
-  .daily {
-    grid-area: daily;
-  }
-  .goals {
-    grid-area: goals;
-  }
-  .status {
-    grid-area: status;
-  }
-}
-
 /* ---- HABITS ---- */
 @layer components {
-  .habits {
-  }
-  .habits__title {
+  .brand {
+    position: relative;
+    z-index: 20;
   }
 
-  .habits__input {
+  .brand__name {
+    font-weight: 600;
+    position: relative;
+    z-index: 20;
   }
-  .habits__list {
-    scrollbar-width: none;
+  .brand__name::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 35px;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    @apply badge-primary opacity-80 rounded-md;
+  }
+  .brand__name::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 35px;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) rotate(45deg);
+    @apply badge-primary opacity-80 rounded-md;
   }
 }
 
@@ -146,21 +134,4 @@
     /* display: none; */
     scrollbar-width: none;
   }
-
-  /* .completed {
-    position: relative;
-    z-index: 2;
-  }
-  .completed::before {
-    content: "";
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: green;
-    z-index: 1;
-  } */
 }
