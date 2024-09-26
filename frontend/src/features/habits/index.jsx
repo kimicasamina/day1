@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import HabitList from "./components/habitList/index.jsx";
 import CreateHabit from "./components/createHabit/index.jsx";
 import Modal from "@/components/modal/index.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { getHabits } from "@/store/habits/actions.js";
 import { BiSolidPlusSquare } from "react-icons/bi";
 import { TbFilter } from "react-icons/tb";
 import { TbSortAscendingLetters } from "react-icons/tb";
 
-export default function Habits({ habits, tags }) {
+export default function Habits({ habits, tags, searchResults }) {
   const [showModal, setShowModal] = useState(false);
 
   function closeModal() {
@@ -39,7 +37,7 @@ export default function Habits({ habits, tags }) {
           ADD NEW HABIT
           <BiSolidPlusSquare className="w-[28px] h-full ml-2" />
         </button>
-        <HabitList habits={habits} />
+        <HabitList habits={habits} searchResults={searchResults} />
       </div>
       {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>

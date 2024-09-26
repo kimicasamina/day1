@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import TagsForm from "./tagsForm";
+import DeleteTag from "./deleteTag";
 import Modal from "../modal";
-import CreateTag from "./createTag";
 import { TbTags } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
@@ -29,7 +28,7 @@ export default function Tags() {
 
       {showModal ? (
         <Modal isVisible={showModal} onClose={closeModal}>
-          <TagsForm onClose={closeModal} tags={tags} />
+          <DeleteTag onClose={closeModal} tags={tags} />
         </Modal>
       ) : null}
     </div>

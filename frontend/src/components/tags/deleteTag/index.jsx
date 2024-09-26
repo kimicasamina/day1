@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { TbFilterSearch } from "react-icons/tb";
+import { useDispatch } from "react-redux";
 import { TbFilterX } from "react-icons/tb";
 import { TbFilterPlus } from "react-icons/tb";
-import Modal from "@/components/modal";
 import CreateTag from "@/components/tags/createTag";
-import { useUi } from "@/context/ui/ui";
 import { deleteTag } from "@/store/tags/actions";
 
-export default function TagsForm({ tags, onClose }) {
+export default function DeleteTag({ tags, onClose }) {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState([]);
   const [showTagCreation, setShowTagCreation] = useState(false);

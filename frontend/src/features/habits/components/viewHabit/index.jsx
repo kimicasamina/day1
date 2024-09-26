@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BiX } from "react-icons/bi";
 import { BiPencil } from "react-icons/bi";
 import { BiSolidTrash } from "react-icons/bi";
 import EditHabit from "../editHabit";
