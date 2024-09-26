@@ -21,7 +21,7 @@ export default function CreateTag({ onClose }) {
 
   return (
     <form
-      className="w-full grow flex flex-col gap-y-8 min-h-full justify-between"
+      className="w-full grow flex flex-col gap-y-4 min-h-full justify-between"
       onSubmit={(e) => handleSubmit(e)}
     >
       <h2 className="text-3xl text-center font-semibold">Create New Tag</h2>

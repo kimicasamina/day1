@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import TagsForm from "./tagsForm";
 import Modal from "../modal";
-import CreateTag from "../searchbar/createTag";
+import CreateTag from "./createTag";
 import { TbTags } from "react-icons/tb";
+import { useSelector } from "react-redux";
 
 export default function Tags() {
+  const tags = useSelector((state) => state.tags);
   const [showModal, setShowModal] = useState(false);
-  const [isNewTagCreation, setIsNewTagCreation] = useState(false);
 
   function closeModal() {
     setShowModal(false);
+  }
+
+  if (!tags) {
+    return <h1 className="">Loading...</h1>;
   }
 
   return (
@@ -21,19 +26,12 @@ export default function Tags() {
         <span className="">Tags</span>
         <TbTags className="w-8 h-8" />
       </div>
-      {showModal && !isNewTagCreation ? (
+
+      {showModal ? (
         <Modal isVisible={showModal} onClose={closeModal}>
-          {/* <CreateTag onClose={closeModal} /> */}
-          <TagsForm onClose={closeModal} />
+          <TagsForm onClose={closeModal} tags={tags} />
         </Modal>
       ) : null}
-      {showModal && isNewTagCreation ? (
-        <Modal isVisible={showModal} onClose={closeModal}>
-          <CreateTag onClose={closeModal} />
-          {/* <TagsForm onClose={closeModal} /> */}
-        </Modal>
-      ) : null}
-      {/* <TagsChecklist /> */}
     </div>
   );
 }

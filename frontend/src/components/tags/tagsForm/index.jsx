@@ -4,17 +4,14 @@ import { TbFilterSearch } from "react-icons/tb";
 import { TbFilterX } from "react-icons/tb";
 import { TbFilterPlus } from "react-icons/tb";
 import Modal from "@/components/modal";
-import CreateTag from "@/components/searchbar/createTag";
+import CreateTag from "@/components/tags/createTag";
 import { useUi } from "@/context/ui/ui";
 import { deleteTag } from "@/store/tags/actions";
 
-export default function TagsForm({ onClose }) {
+export default function TagsForm({ tags, onClose }) {
   const dispatch = useDispatch();
-  const tags = useSelector((state) => state.tags);
   const [selected, setSelected] = useState([]);
-  // const { selectedTags, setSelectedTags } = useUi();
-  // // const [showModal, setShowModal] = useState(false);
-  const [isAdd, setIsAdd] = useState(false);
+  const [showTagCreation, setShowTagCreation] = useState(false);
 
   function handleCheckClick(e, id) {
     console.log("ID:", id);
@@ -38,65 +35,44 @@ export default function TagsForm({ onClose }) {
     onClose();
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const selectedTags = tags.filter((tag) => {
-      if (selected.includes(tag._id)) {
-        return tag;
-      }
-    });
-    console.log("SELECTED TAGS: ", selectedTags);
-  }
-
-  // function closeModal() {
-  //   setShowModal(false);
-  // }
-
   return (
-    <>
-      <form
-        className="w-full grow flex flex-col gap-y-4 min-h-full justify-between"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <h2 className="text-3xl text-center font-semibold">Filter Tags</h2>
+    <div className="flex flex-col gap-y-10">
+      <div className="w-full grow flex flex-col gap-y-4 min-h-full justify-between ">
+        <h2 className="text-3xl text-center font-semibold">Tags</h2>
 
         <div className="grid grid-cols-2">
-          {tags.length > 0
-            ? tags.map((tag, index) => (
-                <span className="" key={index}>
-                  <input
-                    type="checkbox"
-                    onChange={(e) => handleCheckClick(e, tag._id)}
-                  />
-                  <label className="ml-2">{tag.name}</label>
-                </span>
-              ))
-            : null}
+          {tags.length > 0 ? (
+            tags.map((tag, index) => (
+              <span className="" key={index}>
+                <input
+                  type="checkbox"
+                  onChange={(e) => handleCheckClick(e, tag._id)}
+                />
+                <label className="ml-2">{tag.name}</label>
+              </span>
+            ))
+          ) : (
+            <div className="w-full">Tag is empty, create new tags.</div>
+          )}
         </div>
-        <button type="submit" className="btn btn-warning">
-          Search
-          <TbFilterSearch className="w-5 h-5" />
-        </button>
-        <button
-          className="btn btn-info"
-          onClick={(e) => {
-            // setShowModal(false);
-            setIsAdd(true);
-          }}
-        >
-          Add New
-          <TbFilterPlus className="w-5 h-5" />
-        </button>
+
         {selected.length !== 0 && (
           <button className="btn btn-error" onClick={(e) => handleDelete(e)}>
             Delete
             <TbFilterX className="w-5 h-5" />
           </button>
         )}
-
-        {isAdd ? <CreateTag onClose={onClose} /> : null}
-      </form>
-    </>
+        {!showTagCreation ? (
+          <button
+            className="btn btn-info"
+            onClick={(e) => setShowTagCreation((prev) => true)}
+          >
+            Add New
+            <TbFilterPlus className="w-5 h-5" />
+          </button>
+        ) : null}
+      </div>
+      {showTagCreation ? <CreateTag onClose={onClose} /> : null}
+    </div>
   );
 }
