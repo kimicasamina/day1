@@ -6,12 +6,12 @@ const tagsReducer = (tags = initialValue, action) => {
       return [...action.payload];
     }
 
-    case "ADD_TAGS": {
+    case "ADD_TAG": {
       console.log("PAYLOAD:", action.payload);
       return [...tags, action.payload];
     }
 
-    case "DELETE_TAGS": {
+    case "DELETE_TAG": {
       console.log("TAG ID: ", action.payload);
       const newTags = tags.filter((tag) => tag._id !== action.payload._id);
       return [...newTags];

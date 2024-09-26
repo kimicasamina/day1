@@ -4,7 +4,8 @@ import axios from "axios";
 const uiContext = createContext();
 
 export function ProvideUi({ children }) {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   function closeModal() {
     setShowModal((prev) => (prev = false));
@@ -15,9 +16,7 @@ export function ProvideUi({ children }) {
   }
 
   return (
-    <uiContext.Provider
-      value={{ showModal, setShowModal, closeModal, openModal }}
-    >
+    <uiContext.Provider value={{ selectedTags, setSelectedTags }}>
       {children}
     </uiContext.Provider>
   );
