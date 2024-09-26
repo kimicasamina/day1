@@ -30,7 +30,7 @@ export default function ViewHabit({ habit, onClose }) {
           <p className="text-sm">{habit?.description}</p>
 
           <div className="flex gap-x-2">
-            {habit.tags.length > 0
+            {habit.tags?.length > 0
               ? habit.tags.map((tag) => (
                   <span
                     className="px-2 max-w-fit badge-neutral badge-md rounded-badge"

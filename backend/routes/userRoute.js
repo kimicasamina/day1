@@ -16,3 +16,4 @@ router.delete("/logout", logoutUser);
 router.get("/getprofile", verifyToken, getProfile);
 
 export default router;
+
