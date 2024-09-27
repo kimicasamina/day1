@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/auth/auth";
 import toast from "react-hot-toast";
+import { man2, man1 } from "@/assets";
 
 export default function Login() {
   const { user, setUser } = useAuth();
@@ -31,9 +32,9 @@ export default function Login() {
   }
 
   return (
-    <div className="w-full grow flex justify-center items-center">
+    <div className="w-full min-h-full flex flex-col sm:flex-row bg-primary-foreground">
       <form
-        className="w-full sm:max-w-[50%] mx-auto flex flex-col gap-y-4 -mt-32 px-4 sm:px-0"
+        className="w-full h-full sm:max-w-[50%] mx-auto flex flex-col justify-center gap-y-4 px-4 sm:px-8"
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="text-4xl mb-4 font-semibold">Login to Your Account</h2>
@@ -73,6 +74,14 @@ export default function Login() {
           </Link>
         </div>
       </form>
+      <div className="w-full h-full hidden sm:flex relative">
+        <img
+          src={man2}
+          alt=""
+          className="w-full object-cover h-full relative"
+        />
+        <div className="absolute inset-0 bg-primary-foreground/10 flex items-center justify-center"></div>
+      </div>
     </div>
   );
 }
