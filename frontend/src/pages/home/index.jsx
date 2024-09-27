@@ -8,11 +8,12 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState("");
   const habits = useSelector((state) => state.habits);
   const searchResults = habits.filter((habit) => {
-    let tags = habit.tags.map((tag) => tag.name);
+    let tags = habit?.tags?.map((tag) => tag.name);
+
     if (habit.name.toLowerCase().includes(searchInput.toLowerCase())) {
       return habit;
     }
-    if (tags.join(" ").toLowerCase().includes(searchInput.toLowerCase())) {
+    if (tags?.join(" ").toLowerCase().includes(searchInput.toLowerCase())) {
       return habit;
     }
   });
