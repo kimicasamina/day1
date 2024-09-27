@@ -42,7 +42,9 @@ export async function createUser(req, res, next) {
     password: hashPassword,
   });
 
-  return res.status(201).json({ success: true });
+  return res
+    .status(201)
+    .json({ success: true, message: "User registered successfully" });
 }
 
 export async function loginUser(req, res, next) {
@@ -71,18 +73,23 @@ export async function loginUser(req, res, next) {
       expiresIn: "1h",
     });
 
+    // const { password, habits, userCredentials } = user.toObject();
+    const userCredentials = {
+      username: user.username,
+      email: user.email,
+      fullname: user.fullname,
+      _id: user._id,
+    };
+
     res.cookie("access_token", token, {
       httpOnly: true,
       expiresIn: "5m",
     });
+
     res.status(201).json({
-      user: {
-        _id: user._id,
-        fullname: user.fullname,
-        email: user.email,
-        username: user.username,
-      },
       success: true,
+      message: "Logged in Successfully",
+      user: userCredentials,
     });
   } catch (err) {
     console.log(err);

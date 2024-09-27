@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -18,12 +19,11 @@ export default function Register() {
       const { data } = await axios.post("/api/users/register", formData);
       console.log("DATA:", data);
 
-      if (data.success) {
-        console.log("You are logged in successfully");
-        return navigate("/login");
-      }
+      toast.success(data.message);
+      return navigate("/login");
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data.message);
+      console.log(error.response.data.message);
     }
   }
 

@@ -3,6 +3,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/auth/auth";
+import toast from "react-hot-toast";
+
 export default function Login() {
   const { user, setUser } = useAuth();
   const [formData, setFormData] = useState({
@@ -20,9 +22,11 @@ export default function Login() {
       console.log("DATA:", data);
 
       setUser(data.user);
+      toast.success(data.message);
       return navigate("/habits");
     } catch (error) {
       console.log(error.response.data);
+      toast.error(error.response.data.message);
     }
   }
 
