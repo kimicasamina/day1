@@ -21,3 +21,9 @@ export const formatDateShort = (date) => {
 
   return formattedDate.toLocaleDateString("en-GB", options);
 };
+
+export const generateRandomDate = (start, end) => {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};

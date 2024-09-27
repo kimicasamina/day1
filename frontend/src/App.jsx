@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTags } from "./store/tags/actions";
 import { getHabits } from "./store/habits/actions";
+import axios from "axios";
 function App() {
   const dispatch = useDispatch();
 
