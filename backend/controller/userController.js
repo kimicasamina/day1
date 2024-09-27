@@ -113,8 +113,8 @@ export async function getProfile(req, res, next) {
   console.log("REQ USER_ID", user_token);
 
   try {
-    const user = await User.findById(user_token.id).select("-password");
-    return res.status(200).json(user);
+    const user = await User.findById(user_token.id).select("-password -habits");
+    return res.status(200).json({ user });
   } catch (err) {
     console.log(err);
     return res.status(401).json({ message: "User not found", success: false });
