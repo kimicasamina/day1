@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const getTags = () => async (dispatch) => {
+export const getTags = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get("/api/tags");
+    const { data } = await axios.get(`/api/tags/user/${userId}`);
     dispatch({ type: "GET_TAGS", payload: data.tags });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const addTag = (name) => async (dispatch) => {
+export const addTag = (name, user) => async (dispatch) => {
   try {
-    const { data } = await axios.post("/api/tags", { name });
+    const { data } = await axios.post("/api/tags", { name, user });
     dispatch({ type: "ADD_TAG", payload: data.tag });
   } catch (err) {
     console.log(err);

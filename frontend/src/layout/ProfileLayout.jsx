@@ -19,13 +19,7 @@ export default function ProfileLayout() {
 
   if (!isFetching && user) {
     dispatch(getHabits(user._id));
-    dispatch(getTags());
+    dispatch(getTags(user._id));
     return <Outlet />;
   }
-
-  // useEffect(() => {
-  //   if (user && !isFetching) {
-  //     dispatch(getHabits(user._id));
-  //   }
-  // }, []);
 }

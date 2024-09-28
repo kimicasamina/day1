@@ -3,14 +3,16 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addTag } from "@/store/tags/actions";
+import { useAuth } from "@/context/auth/auth";
 export default function CreateTag({ onClose }) {
   const [name, setName] = useState("");
+  const { user } = useAuth();
   const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      dispatch(addTag(name));
+      dispatch(addTag(name, user._id));
       toast.success("Sucessfully added a new tag");
       onClose();
     } catch (error) {
