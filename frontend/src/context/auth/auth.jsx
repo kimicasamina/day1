@@ -14,8 +14,8 @@ export function ProvideAuth({ children }) {
         try {
           const { data } = await axios.get("/api/users/getprofile");
           console.log("AUTH USER DATA: ", data);
-          setUser(data);
-          setIsFetching(false);
+          setUser(data.user);
+          // setIsFetching(false);
         } catch (err) {
           console.log(err);
           setError(err.message);

@@ -9,7 +9,7 @@ const habitSchema = new mongoose.Schema({
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tag",
+      ref: "Tags  ",
     },
   ],
   createdAt: {
@@ -18,7 +18,7 @@ const habitSchema = new mongoose.Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Users",
   },
   entries: [
     {

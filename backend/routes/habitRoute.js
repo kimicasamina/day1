@@ -6,6 +6,7 @@ import {
   deleteHabit,
   updateHabit,
   checkHabit,
+  getByUserId,
 } from "../controller/habitController.js";
 
 router.get("/", getHabits);
@@ -13,5 +14,7 @@ router.post("/create", createHabit);
 router.delete("/:id/delete", deleteHabit);
 router.put("/:id/update", updateHabit);
 router.put("/:id/check", checkHabit);
+
+router.get("/user/:id", getByUserId);
 
 export default router;

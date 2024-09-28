@@ -26,12 +26,12 @@ import { ProvideAuth } from "./context/auth/auth.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <ProvideAuth>
-        <ProvideUi>
+    <ProvideAuth>
+      <ProvideUi>
+        <Provider store={store}>
           <App />
-        </ProvideUi>
-      </ProvideAuth>
-    </Provider>
+        </Provider>
+      </ProvideUi>
+    </ProvideAuth>
   </StrictMode>
 );

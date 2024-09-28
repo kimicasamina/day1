@@ -18,7 +18,7 @@ export async function createHabit(req, res, next) {
     let habit = new Habit({
       name,
       description,
-      user,
+      userId: existingUser._id,
       tags: tags ? await Tag.find({ _id: { $in: tags } }) : [],
     });
 
@@ -126,5 +126,27 @@ export const checkHabit = async (req, res, next) => {
     return res.status(201).json({ habit });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const getByUserId = async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    let existingUser = await User.findById(id);
+
+    if (!existingUser) {
+      return res
+        .status(401)
+        .json({ message: "Could not find the user", success: false });
+    }
+
+    const habits = await Habit.find({ userId: existingUser._id }).populate(
+      "entries"
+    );
+
+    res.status(201).json({ habits, success: true });
+  } catch (error) {
+    console.log(error);
   }
 };

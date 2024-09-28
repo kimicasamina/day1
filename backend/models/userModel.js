@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   habits: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Habit",
+      ref: "Habits",
     },
   ],
 });

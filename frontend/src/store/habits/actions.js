@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getHabits = () => async (dispatch) => {
+export const getHabits = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get("/api/habits");
+    const { data } = await axios.get(`/api/habits/user/${userId}`);
     dispatch({ type: "GET_HABITS", payload: data.habits });
   } catch (err) {
     console.log(err);
