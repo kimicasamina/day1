@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import HabitList from "./components/habitList/index.jsx";
-import CreateHabit from "./components/createHabit/index.jsx";
-import Filter from "@/components/filter/index.jsx";
-import Modal from "@/components/modal/index.jsx";
+import React, { useState } from "react";
+import Filter from "@/components/filter";
+import TodoList from "./components/TodoList/TodoList";
+import CreateTodo from "./components/createTodo";
+import Modal from "@/components/modal";
 import { BiSolidPlusSquare } from "react-icons/bi";
-import { TbFilter } from "react-icons/tb";
-import { TbSortAscendingLetters } from "react-icons/tb";
 
-export default function Habits({ habits, tags, searchResults }) {
+export default function Todos({ todos, searchResults, tags }) {
+  console.log("todos:::", todos);
   const [showModal, setShowModal] = useState(false);
 
   function closeModal() {
@@ -15,8 +14,8 @@ export default function Habits({ habits, tags, searchResults }) {
   }
 
   return (
-    <div className="grow flex-1 h-full w-full habits overflow-y-hidden flex flex-col p-4">
-      <h1 className="habits__title font-semibold text-4xl">Habits</h1>
+    <div className="grow flex-1 h-full w-full todos overflow-y-hidden flex flex-col p-4">
+      <h1 className="todos__title font-semibold text-4xl">Todos</h1>
       <Filter />
       <div className="overflow-y-hidden h-full flex flex-col gap-y-2 bg-base-200 p-2 rounded-md">
         <button
@@ -26,11 +25,11 @@ export default function Habits({ habits, tags, searchResults }) {
           ADD NEW TODO
           <BiSolidPlusSquare className="w-[28px] h-full ml-2" />
         </button>
-        <HabitList habits={habits} searchResults={searchResults} />
+        <TodoList todos={todos} />
       </div>
       {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>
-          <CreateHabit onClose={closeModal} />
+          <CreateTodo onClose={closeModal} />
         </Modal>
       )}
     </div>

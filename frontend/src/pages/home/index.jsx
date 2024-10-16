@@ -1,8 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Habits from "@/features/habits";
+import Todos from "@/features/todos";
 import SearchBar from "@/components/searchbar";
 import Tags from "@/components/tags";
 import { useDispatch, useSelector } from "react-redux";
+
+// const todos = [
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Buy Grocery",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui exercitationem.",
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Go to the salon",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui exercitationem.",
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Pick of clothes",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui exercitationem.",
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Attend meeting at 4pm",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui exercitationem.",
+//   },
+// ];
 
 export default function Home() {
   const [searchInput, setSearchInput] = useState("");
@@ -18,11 +46,14 @@ export default function Home() {
     }
   });
   const tags = useSelector((state) => state.tags);
+  const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
   if (!tags && !habits) {
     return <h1 className="">Loading...</h1>;
   }
+  console.log("todos:", todos);
+  console.log("tags:", tags);
 
   return (
     <div className="h-full w-full bg-primary-foreground flex flex-col">
@@ -30,8 +61,9 @@ export default function Home() {
         <SearchBar setSearchInput={setSearchInput} />
         <Tags />
       </div>
-      <div className="h-full w-full sm:max-w-[60%] mx-auto overflow-y-scroll no-scrollbar">
+      <div className="h-full w-full grid md:grid-cols-3 overflow-y-scroll no-scrollbar">
         <Habits habits={habits} searchResults={searchResults} tags={tags} />
+        <Todos todos={todos} searchResults={searchResults} tags={tags} />
       </div>
     </div>
   );

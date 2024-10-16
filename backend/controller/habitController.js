@@ -129,7 +129,7 @@ export const checkHabit = async (req, res, next) => {
   }
 };
 
-export const getByUserId = async (req, res, next) => {
+export const getHabitsByUserId = async (req, res, next) => {
   const id = req.params.id;
 
   try {
@@ -141,9 +141,17 @@ export const getByUserId = async (req, res, next) => {
         .json({ message: "Could not find the user", success: false });
     }
 
-    const habits = await Habit.find({ userId: existingUser._id }).populate(
-      "entries"
-    );
+    const habits = await Habit.find({ userId: existingUser._id }).populate([
+      {
+        path: "entries",
+        // select: "field",
+        model: Entry,
+      },
+      {
+        path: "tags",
+        model: Tag,
+      },
+    ]);
 
     res.status(201).json({ habits, success: true });
   } catch (error) {

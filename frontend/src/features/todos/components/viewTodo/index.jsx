@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BiPencil } from "react-icons/bi";
 import { BiSolidTrash } from "react-icons/bi";
-import EditHabit from "../editHabit";
 import { useDispatch } from "react-redux";
-import { deleteHabit } from "@/store/habits/actions";
+import { deleteTodo } from "@/store/todos/actions";
+import EditTodo from "../editTodo";
 import Calendar from "@/components/calendar";
 
-export default function ViewHabit({ habit, onClose }) {
+export default function ViewTodo({ todo, onClose }) {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
 
@@ -15,22 +15,21 @@ export default function ViewHabit({ habit, onClose }) {
   }
 
   function handleDelete() {
-    dispatch(deleteHabit(habit._id));
+    dispatch(deleteTodo(todo._id));
     onClose();
   }
 
-  console.log("HABIT DETAILS: ", habit);
+  console.log("HABIT DETAILS: ", todo);
 
   return (
     <div className="w-full min-h-full flex flex-col gap-y-4 transition-all duration-300 p-2">
       {!editMode ? (
         <>
-          <h2 className="text-2xl font-semibold">{habit?.name}</h2>
-          <p className="text-sm">{habit?.description}</p>
-
-          <div className="flex gap-x-2">
-            {habit.tags?.length > 0
-              ? habit.tags.map((tag) => (
+          <h2 className="text-2xl font-semibold">{todo?.name}</h2>
+          <p className="text-sm">{todo?.description}</p>
+          <div className="flex gap-x-2 mb-20">
+            {todo.tags?.length > 0
+              ? todo.tags.map((tag) => (
                   <span
                     className="px-2 max-w-fit badge-neutral badge-md rounded-badge"
                     key={tag._id}
@@ -40,10 +39,7 @@ export default function ViewHabit({ habit, onClose }) {
                 ))
               : null}
           </div>
-          <div className="w-full grow mt-4">
-            <Calendar datesWithCheck={habit.entries} />
-          </div>
-          <div className="flex w-full justify-end items-center gap-x-2">
+          <div className="flex w-full justify-end items-center  gap-x-2">
             <button
               className="btn btn-md px-8 btn-accent text-secondary-content flex items-center gap-x-1"
               onClick={handleEdit}
@@ -62,7 +58,7 @@ export default function ViewHabit({ habit, onClose }) {
         </>
       ) : (
         <>
-          <EditHabit habit={habit} onClose={onClose} />
+          <EditTodo todo={todo} onClose={onClose} />
         </>
       )}
     </div>

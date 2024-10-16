@@ -9,7 +9,7 @@ export const getEntries = (dates, entries) => {
     };
     habitEntries.push(currentDate);
 
-    for (let k = 0; k < entries.length; k++) {
+    for (let k = 0; k < entries?.length; k++) {
       if (formatDate(entries[k].date) === formatDate(dates[j])) {
         habitEntries[j].entries.push({
           habitId: entries[k].habitId,
@@ -19,5 +19,7 @@ export const getEntries = (dates, entries) => {
       }
     }
   }
+
+  console.log("habit entries:", habitEntries);
   return habitEntries;
 };

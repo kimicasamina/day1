@@ -5,10 +5,12 @@ import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <ErrorBoundary fallback={"An error has occurred"}>
+    <>
       <Toaster />
       <RouterProvider router={router} />
-    </ErrorBoundary>
+    </>
+    // <ErrorBoundary fallback={"An error has occurred"}>
+    // </ErrorBoundary>
   );
 }
 

@@ -29,6 +29,12 @@ const userSchema = new mongoose.Schema({
       ref: "Habits",
     },
   ],
+  todos: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Todos",
+    },
+  ],
 });
 
 const User = mongoose.model("Users", userSchema);

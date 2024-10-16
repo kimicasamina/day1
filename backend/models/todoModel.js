@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const habitSchema = new mongoose.Schema({
+const todoSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -20,15 +20,13 @@ const habitSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
   },
-  entries: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Entry",
-    },
-  ],
+  isChecked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // const userModel = userConnection.model('user', userSchema)
 
-const Habit = mongoose.model("Habits", habitSchema);
-export default Habit;
+const Todo = mongoose.model("Todos", todoSchema);
+export default Todo;

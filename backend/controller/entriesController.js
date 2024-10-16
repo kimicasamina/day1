@@ -32,7 +32,7 @@ export async function addEntry(req, res, next) {
   try {
     const entry = await Entry.create({
       habitId,
-      date: new Date(date),
+      date: date ? new Date(date) : new Date(),
     });
 
     const habit = await Habit.findByIdAndUpdate(

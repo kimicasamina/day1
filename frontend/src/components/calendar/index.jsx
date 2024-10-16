@@ -12,6 +12,7 @@ export default function Calendar({ datesWithCheck }) {
 
   const renderDays = () => {
     const daysArray = new Array(getMonth(currentDate));
+    console.log("daysArray", daysArray);
     let habitEntries = getEntries(daysArray[0], datesWithCheck);
     habitEntries = habitEntries.sort((a, b) => new Date(a) - new Date(b));
 
