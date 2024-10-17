@@ -34,7 +34,7 @@ export default function EditTodo({ todo, onClose }) {
       className="grow flex flex-col gap-y-8 min-h-full justify-between"
     >
       <div className="grow flex flex-col gap-y-6">
-        <h2 className="text-3xl text-center font-semibold">Edit Todo</h2>
+        <h2 className="text-3xl text-center font-semibold">Edit Daily</h2>
         <div className="flex flex-col gap-y-2">
           <label htmlFor="" className="text-base-content font-semibold text-xl">
             Name

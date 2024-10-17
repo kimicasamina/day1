@@ -2,7 +2,7 @@ import Calendar from "@/components/calendar";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function Progress() {
+export default function HabitProgress() {
   const habits = useSelector((state) => state.habits);
 
   let index = 0;
@@ -31,10 +31,10 @@ export default function Progress() {
 
   return (
     <div className="h-full w-full p-4">
-      <div className="w-full h-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-20 justify-center overflow-y-scroll no-scrollbar sm:p-4 ">
+      <div className="w-full h-auto flex flex-wrap gap-x-20 gap-y-20 justify-center overflow-y-scroll no-scrollbar sm:p-4 ">
         {selectedHabit ? (
           <div
-            className="w-full shadow-md bg-neutral p-4 rounded-sm text-neutral-content "
+            className="w-full max-w-[350px] shadow-md bg-neutral p-4 rounded-sm text-neutral-content "
             key={selectedHabit?._id}
           >
             <div className="flex gap-x-4 items-center py-4 text-center">

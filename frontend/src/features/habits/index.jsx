@@ -23,10 +23,10 @@ export default function Habits({ habits, tags, searchResults }) {
           className="leading-loose flex justify-center items-center w-full btn btn-md rounded-md btn-accent btn-accent-content"
           onClick={(e) => setShowModal((prev) => (prev = true))}
         >
-          ADD NEW TODO
+          ADD NEW HABIT
           <BiSolidPlusSquare className="w-[28px] h-full ml-2" />
         </button>
-        <HabitList habits={habits} searchResults={searchResults} />
+        <HabitList habits={habits} searchResults={searchResults} tags={tags} />
       </div>
       {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>
