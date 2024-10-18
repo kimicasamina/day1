@@ -9,8 +9,6 @@ The Habit Tracker application is designed to help users build and maintain posit
 - User Authentication: Users can sign up, log in, and manage their accounts.
 - Habit Management: Create, edit, and delete habits.
 - Progress Tracking: Daily check-ins and visual representation of progress.
-- Statistics Dashboard: View habit completion rates and trends over time.
-- Responsive Design: Accessible on both desktop and mobile devices.
 
 ## Architecture
 
@@ -92,10 +90,4 @@ The application follows a client-server architecture:
   }
   ```
 
-### WIP
 
-[x] - add navbar link active states
-[] - custom toaster message
-[] - store for list of entries
-[] - implement calendar with weekdays
-[] - dashboard and analytics
