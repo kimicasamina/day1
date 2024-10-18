@@ -7,7 +7,7 @@ import { BiSolidPlusSquare } from "react-icons/bi";
 import { TbFilter } from "react-icons/tb";
 import { TbSortAscendingLetters } from "react-icons/tb";
 
-export default function Habits({ habits, tags, searchResults }) {
+export default function Habits({ habits, tags, searchInput }) {
   const [showModal, setShowModal] = useState(false);
 
   function closeModal() {
@@ -26,7 +26,7 @@ export default function Habits({ habits, tags, searchResults }) {
           ADD NEW HABIT
           <BiSolidPlusSquare className="w-[28px] h-full ml-2" />
         </button>
-        <HabitList habits={habits} searchResults={searchResults} tags={tags} />
+        <HabitList habits={habits} searchInput={searchInput} tags={tags} />
       </div>
       {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>

@@ -17,6 +17,7 @@ import habitRoute from "./routes/habitRoute.js";
 import userRoute from "./routes/userRoute.js";
 import tagsRoute from "./routes/tagsRoute.js";
 import todosRoute from "./routes/todosRoute.js";
+import goalsRoute from "./routes/goalRoute.js";
 import verifyToken from "./middleware/verifyToken.js";
 
 const app = express();
@@ -51,6 +52,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use("/api/habits", habitRoute);
 app.use("/api/todos", todosRoute);
+app.use("/api/goals", goalsRoute);
 app.use("/api/users", userRoute);
 app.use("/api/entries", entriesRoute);
 app.use("/api/tags", tagsRoute);

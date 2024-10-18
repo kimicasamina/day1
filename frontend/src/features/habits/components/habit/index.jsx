@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { BiCheck } from "react-icons/bi";
 import { TbPlus } from "react-icons/tb";
 import Modal from "@/components/modal";

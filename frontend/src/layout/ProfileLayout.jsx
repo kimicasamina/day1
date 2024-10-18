@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getHabits } from "@/store/habits/actions";
 import { getTags } from "@/store/tags/actions";
 import { getTodos } from "@/store/todos/actions";
+import { getGoals } from "@/store/goals/action";
 
 export default function ProfileLayout() {
   const { user, isFetching, error } = useAuth();
@@ -22,6 +23,7 @@ export default function ProfileLayout() {
     dispatch(getHabits(user._id));
     dispatch(getTodos(user._id));
     dispatch(getTags(user._id));
+    dispatch(getGoals(user._id));
     return <Outlet />;
   }
 }

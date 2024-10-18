@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Filter from "@/components/filter";
 import GoalList from "./components/goalList";
+import CreateGoal from "./components/createGoal";
+import Modal from "@/components/modal";
 import { BiSolidPlusSquare } from "react-icons/bi";
 
-export default function Goals({ goals, tags, searchResults }) {
+export default function Goals({ goals, tags, searchInput }) {
+  const [showModal, setShowModal] = useState(false);
+
+  function closeModal() {
+    setShowModal(false);
+  }
   return (
     <div className="grow flex-1 h-full w-full todos overflow-y-hidden flex flex-col p-4">
       <h1 className="todos__title font-semibold text-4xl">Goals</h1>
@@ -16,13 +23,13 @@ export default function Goals({ goals, tags, searchResults }) {
           ADD NEW GOAL
           <BiSolidPlusSquare className="w-[28px] h-full ml-2" />
         </button>
-        <GoalList goals={goals} tags={tags} searchResults={searchResults} />
+        <GoalList goals={goals} tags={tags} searchInput={searchInput} />
       </div>
-      {/* {showModal && (
+      {showModal && (
         <Modal isVisible={showModal} onClose={closeModal}>
-          <CreateTodo onClose={closeModal} />
+          <CreateGoal onClose={closeModal} />
         </Modal>
-      )} */}
+      )}
     </div>
   );
 }

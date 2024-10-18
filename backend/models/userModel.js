@@ -35,6 +35,12 @@ const userSchema = new mongoose.Schema({
       ref: "Todos",
     },
   ],
+  goals: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Goals",
+    },
+  ],
 });
 
 const User = mongoose.model("Users", userSchema);

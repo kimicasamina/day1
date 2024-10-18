@@ -7,7 +7,7 @@ import ViewTodo from "../viewTodo";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
-export default function Todo({ todo, onClose }) {
+export default function Todo({ todo }) {
   const [showModal, setShowModal] = useState(false);
   console.log("TODO:", todo);
   const dispatch = useDispatch();
