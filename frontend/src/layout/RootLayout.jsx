@@ -11,13 +11,11 @@ export default function RootLayout() {
   }
 
   return (
-    <html data-theme="cupcake">
-      <div className="w-full h-screen flex flex-col justify-between text-base-content ">
-        <Nav />
-        <main className="h-full w-full text-base-content flex flex-col overflow-y-scroll no-scrollbar">
-          <Outlet />
-        </main>
-      </div>
-    </html>
+    <div data-theme="cupcake" className="w-full h-screen flex flex-col justify-between text-base-content">
+      <Nav />
+      <main className="h-full w-full text-base-content flex flex-col overflow-y-scroll no-scrollbar">
+        <Outlet />
+      </main>
+    </div>
   );
 }
