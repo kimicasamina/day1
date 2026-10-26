@@ -1,0 +1,53 @@
+name: CI/CD Build and Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Triggers the pipeline every time you push to the main branch
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # --- BUILD & PUSH BACKEND ---
+      - name: Build and Push Backend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: kimicasamina/day1-backend:latest
+
+      # --- BUILD & PUSH FRONTEND ---
+      - name: Build and Push Frontend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          build-args: |
+            VITE_API_URL=https://kimcasamina.com
+          push: true
+          tags: kimicasamina/day1-frontend:latest
+
+  deploy-to-ec2:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute Remote SSH Commands to Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 15.135.224.113
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/deploy
+            docker compose pull
+            docker compose up -d
+            docker system prune -f  # Keeps your EC2 drive continuously clean!
