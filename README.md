@@ -1,7 +1,5 @@
 # day1 Habit Tracker
 
-website: https://day1.kimcasamina.com
-
 The Habit Tracker application is designed to help users build and maintain positive habits. Users can create, edit, and delete habits, track their progress, and visualize their performance over time. The application offers a user-friendly interface for easy interaction and engagement.
 
 ## Features
