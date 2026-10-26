@@ -1,9 +1,9 @@
-name: CI/CD Build and Deploy to EC2
+name: CI/CD Build and Deploy Single-Container to EC2
 
 on:
   push:
     branches:
-      - main  # Triggers the pipeline every time you push to the main branch
+      - main
 
 jobs:
   build-and-push:
@@ -18,23 +18,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # --- BUILD & PUSH BACKEND ---
-      - name: Build and Push Backend Image
+      # --- BUILD COMBINED IMAGE FROM ROOT CONTEXT ---
+      - name: Build and Push Combined App Image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
+          context: . # Set to root directory so Docker can see both frontend/ and backend/
+          file: ./backend/Dockerfile # Specifies where the multi-stage Dockerfile lives
+          build-args: |
+            VITE_CLIENT_URL=https://day1.kimcasamina.com
           push: true
           tags: kimicasamina/day1-backend:latest
-
-      # --- BUILD & PUSH FRONTEND ---
-      - name: Build and Push Frontend Image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./frontend
-          build-args: |
-            VITE_API_URL=https://kimcasamina.com
-          push: true
-          tags: kimicasamina/day1-frontend:latest
 
   deploy-to-ec2:
     needs: build-and-push
@@ -50,4 +43,4 @@ jobs:
             cd ~/deploy
             docker compose pull
             docker compose up -d
-            docker system prune -f  # Keeps your EC2 drive continuously clean!
+            docker system prune -f  # Reclaims precious EC2 storage instantly
